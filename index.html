@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>بورتفوليو - عبدالمتعال</title>
+    <title>بورتفوليو - عبدالمتعال صابون</title>
     <style>
         * {
             margin: 0;
@@ -30,7 +30,7 @@
         }
         section {
             padding: 40px 20px;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
         }
         section h2 {
@@ -52,6 +52,38 @@
             border-radius: 20px;
             font-size: 14px;
         }
+        .projects {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .project-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-right: 4px solid #16a085;
+        }
+        .project-card h3 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+        .project-card p {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        .project-tag {
+            display: inline-block;
+            background-color: #eaf6f3;
+            color: #16a085;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin-top: 5px;
+        }
         .contact-btn {
             display: inline-block;
             background-color: #16a085;
@@ -61,6 +93,26 @@
             border-radius: 8px;
             margin-top: 10px;
         }
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+        .fb { background-color: #1877f2; }
+        .ig { background-color: #d62976; }
+        .tw { background-color: #14171a; }
+        .wa { background-color: #25d366; }
         footer {
             text-align: center;
             padding: 20px;
@@ -73,28 +125,61 @@
 
     <header>
         <h1>عبدالمتعال صابون</h1>
-        <p>مطوّر ويب مبتدئ | شغوف بتصميم المواقع</p>
+        <p>رجل أعمال وناشط في المجتمع المدني | زنجبار، تنزانيا</p>
     </header>
 
     <section>
         <h2>من أنا</h2>
-        <p>أتعلم حاليًا تصميم وبرمجة المواقع باستخدام HTML وCSS وJavaScript، وأبني مشاريعي الأولى خطوة بخطوة.</p>
+        <p>أعمل في عدة مجالات تجارية بزنجبار، تنزانيا، وأسهم في العمل المجتمعي والسياسي. أشغل حاليًا منصب السكرتير المالي لمنظمة منتدى الشباب، ولدي إسهامات في مجال حقوق الإنسان.</p>
+    </section>
+
+    <section>
+        <h2>مشاريعي</h2>
+        <div class="projects">
+
+            <div class="project-card">
+                <h3>تجارة الأجهزة الإلكترونية والكهربائية</h3>
+                <p>نشاط تجاري قائم في زنجبار يغطي كافة أقسام الأجهزة الإلكترونية والكهربائية.</p>
+                <span class="project-tag">تجارة</span>
+            </div>
+
+            <div class="project-card">
+                <h3>Zansun - شركة سياحية</h3>
+                <p>شركة سياحية قيد التأسيس في مدينة زنجبار، تهدف إلى تقديم خدمات سياحية متكاملة للزوار.</p>
+                <span class="project-tag">سياحة</span>
+            </div>
+
+            <div class="project-card">
+                <h3>الوساطة التجارية الدولية</h3>
+                <p>تسهيل الأعمال التجارية الدولية، بما في ذلك التعامل في مجال الذهب والأحجار الكريمة.</p>
+                <span class="project-tag">وساطة تجارية</span>
+            </div>
+
+        </div>
     </section>
 
     <section>
         <h2>مهاراتي</h2>
         <div class="skills">
-            <span class="skill-tag">HTML</span>
-            <span class="skill-tag">CSS</span>
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">تعلّم سريع</span>
+            <span class="skill-tag">إدارة أعمال</span>
+            <span class="skill-tag">تجارة دولية</span>
+            <span class="skill-tag">تصميم مواقع</span>
+            <span class="skill-tag">عمل مجتمعي</span>
         </div>
     </section>
 
     <section>
         <h2>تواصل معي</h2>
         <p>هل لديك مشروع أو فكرة؟ راسلني!</p>
-        <a href="mailto:example@email.com" class="contact-btn">راسلني عبر الإيميل</a>
+
+        <div class="social-links">
+            <a href="https://www.facebook.com/share/1ELtJB6KuC/" class="social-btn fb" target="_blank">فيسبوك</a>
+            <a href="https://www.instagram.com/saboon56" class="social-btn ig" target="_blank">إنستغرام</a>
+            <a href="https://twitter.com/abdelmutaal" class="social-btn tw" target="_blank">تويتر / X</a>
+            <a href="https://wa.me/255679639116" class="social-btn wa" target="_blank">واتساب</a>
+        </div>
+
+        <a href="abdelmutaal53@gamil.com" class="contact-btn">راسلني عبر الإيميل</a>
     </section>
 
     <footer>
