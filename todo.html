@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>قائمة مهامي</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .input-area {
+            margin: 20px 0;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 60%;
+            max-width: 300px;
+        }
+        button {
+            background-color: #16a085;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            margin-right: 8px;
+            cursor: pointer;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        li {
+            background: white;
+            padding: 12px 16px;
+            margin: 8px 0;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        li span {
+            cursor: pointer;
+            flex: 1;
+            text-align: right;
+        }
+        li.done span {
+            text-decoration: line-through;
+            color: #999;
+        }
+        .delete-btn {
+            background-color: #e74c3c;
+            margin-right: 0;
+            margin-left: 0;
+            padding: 6px 12px;
+            font-size: 14px;
+        }
+        .edit-btn {
+            background-color: #2980b9;
+            margin-right: 6px;
+            margin-left: 0;
+            padding: 6px 12px;
+            font-size: 14px;
+        }
+        li input.edit-input {
+            flex: 1;
+            width: auto;
+            max-width: none;
+            padding: 6px 8px;
+            font-size: 15px;
+        }
+        .filter-area {
+            max-width: 400px;
+            margin: 0 auto 10px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+        .filter-btn {
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            padding: 6px 14px;
+            font-size: 14px;
+            margin-right: 0;
+        }
+        .filter-btn.active {
+            background-color: #16a085;
+            color: white;
+        }
+        #counter {
+            max-width: 400px;
+            margin: 0 auto 15px;
+            color: #555;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>قائمة مهامي</h1>
+
+    <div class="input-area">
+        <button onclick="addTask()">إضافة</button>
+        <input type="text" id="taskInput" placeholder="اكتب مهمة جديدة">
+    </div>
+
+    <div class="filter-area">
+        <button class="filter-btn active" id="filter-all" onclick="setFilter('all')">الكل</button>
+        <button class="filter-btn" id="filter-active" onclick="setFilter('active')">غير منجز</button>
+        <button class="filter-btn" id="filter-done" onclick="setFilter('done')">منجز</button>
+    </div>
+
+    <div id="counter"></div>
+
+    <ul id="taskList"></ul>
+
+    <script>
+
+        // بيحدد الفلتر الحالي: "all" أو "active" (غير منجز) أو "done" (منجز)
+        var currentFilter = "all";
+
+        // بتضيف مهمة جديدة
+        function addTask() {
+            var input = document.getElementById("taskInput");
+            var taskText = input.value.trim();
+
+            if (taskText === "") {
+                alert("من فضلك اكتب مهمة أولاً!");
+                return;
+            }
+
+            createTaskElement(taskText, false);
+
+            input.value = "";
+            saveTasks();
+            applyFilter();
+            updateCounter();
+        }
+
+        // بتبني عنصر مهمة (li) وتضيفه للقائمة
+        // done: هل المهمة متشطوبة وقت البناء ولا لأ
+        function createTaskElement(taskText, done) {
+            var li = document.createElement("li");
+            if (done) {
+                li.classList.add("done");
+            }
+
+            var span = document.createElement("span");
+            span.textContent = taskText;
+            span.onclick = function () {
+                li.classList.toggle("done");
+                saveTasks();
+                applyFilter();
+                updateCounter();
+            };
+
+            var editBtn = document.createElement("button");
+            editBtn.textContent = "تعديل";
+            editBtn.className = "edit-btn";
+            editBtn.onclick = function () {
+                startEditing(li, span);
+            };
+
+            var deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "حذف";
+            deleteBtn.className = "delete-btn";
+            deleteBtn.onclick = function () {
+                li.remove();
+                saveTasks();
+                updateCounter();
+            };
+
+            li.appendChild(span);
+            li.appendChild(editBtn);
+            li.appendChild(deleteBtn);
+
+            document.getElementById("taskList").appendChild(li);
+        }
+
+        // بتبدأ وضع التعديل: تستبدل الـ span بـ input فيه نفس النص
+        function startEditing(li, span) {
+            var oldText = span.textContent;
+
+            var editInput = document.createElement("input");
+            editInput.type = "text";
+            editInput.className = "edit-input";
+            editInput.value = oldText;
+
+            // نستبدل الـ span بالـ input في نفس مكانه جوه الـ li
+            li.replaceChild(editInput, span);
+            editInput.focus();
+
+            // دالة موحدة تحفظ التعديل وترجع الـ span تاني
+            function finishEditing() {
+                var newText = editInput.value.trim();
+                if (newText === "") {
+                    newText = oldText; // منمنعش المهمة تبقى فاضية
+                }
+                span.textContent = newText;
+                li.replaceChild(span, editInput);
+                saveTasks();
+            }
+
+            // لما يخرج بره الحقل (يدوس في أي مكان تاني)
+            editInput.onblur = finishEditing;
+
+            // لما يدوس Enter
+            editInput.onkeydown = function (e) {
+                if (e.key === "Enter") {
+                    editInput.blur(); // هيشغل finishEditing تلقائي
+                }
+            };
+        }
+
+        // بتغيّر الفلتر الحالي وتحدّث شكل الأزرار والعرض
+        function setFilter(filter) {
+            currentFilter = filter;
+
+            // نشيل active من كل الأزرار ونحطها بس على اللي اتدوس عليه
+            var buttons = document.getElementsByClassName("filter-btn");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+            document.getElementById("filter-" + filter).classList.add("active");
+
+            applyFilter();
+        }
+
+        // بتلف على كل المهام وتظهر/تخفي حسب الفلتر الحالي
+        function applyFilter() {
+            var items = document.getElementById("taskList").getElementsByTagName("li");
+            for (var i = 0; i < items.length; i++) {
+                var li = items[i];
+                var isDone = li.classList.contains("done");
+
+                if (currentFilter === "all") {
+                    li.style.display = "flex";
+                } else if (currentFilter === "active" && !isDone) {
+                    li.style.display = "flex";
+                } else if (currentFilter === "done" && isDone) {
+                    li.style.display = "flex";
+                } else {
+                    li.style.display = "none";
+                }
+            }
+        }
+
+        // بتحسب عدد المهام الغير منجزة من الإجمالي وتعرضها
+        function updateCounter() {
+            var items = document.getElementById("taskList").getElementsByTagName("li");
+            var total = items.length;
+            var remaining = 0;
+
+            for (var i = 0; i < items.length; i++) {
+                if (!items[i].classList.contains("done")) {
+                    remaining++;
+                }
+            }
+
+            document.getElementById("counter").textContent =
+                "باقي " + remaining + " من أصل " + total + " مهمة";
+        }
+
+        // بتجمع كل المهام الموجودة حاليًا في الصفحة وتخزنها في localStorage
+        function saveTasks() {
+            var taskList = document.getElementById("taskList");
+            var tasks = [];
+
+            // بنلف على كل li موجودة ونجيب النص وحالة الشطب
+            var items = taskList.getElementsByTagName("li");
+            for (var i = 0; i < items.length; i++) {
+                var li = items[i];
+                var span = li.querySelector("span");
+                tasks.push({
+                    text: span.textContent,
+                    done: li.classList.contains("done")
+                });
+            }
+
+            localStorage.setItem("myTasks", JSON.stringify(tasks));
+        }
+
+        // بتقرأ المهام المخزّنة وتبنيها في الصفحة، بتتنفذ أول ما الصفحة تفتح
+        function loadTasks() {
+            var stored = localStorage.getItem("myTasks");
+            if (!stored) {
+                return; // مفيش مهام متخزنة قبل كده
+            }
+
+            var tasks = JSON.parse(stored);
+            for (var i = 0; i < tasks.length; i++) {
+                createTaskElement(tasks[i].text, tasks[i].done);
+            }
+        }
+
+        // ننادي الدالة دي أول ما الصفحة تحمل عشان نعرض المهام القديمة
+        loadTasks();
+        applyFilter();
+        updateCounter();
+
+    </script>
+
+</body>
+</html>
