@@ -249,6 +249,20 @@
             line-height: 1.6;
         }
 
+        /* معرض الصور */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
         /* فورم التواصل */
         .contact-form {
             display: flex;
@@ -340,19 +354,9 @@
         <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
     </nav>
 
-    <section class="fade-section" id="skills">
-        <h2>مهاراتي</h2>
-        <div class="skills">
-            <span class="skill-tag">إدارة أعمال</span>
-            <span class="skill-tag">تجارة دولية</span>
-            <span class="skill-tag">تصميم مواقع</span>
-            <span class="skill-tag">عمل مجتمعي</span>
-        </div>
-    </section>
-
     <section class="fade-section" id="gallery">
         <h2>معرض الأعمال</h2>
-        <img src="project1.jpg" alt="صورة من أعمالي" style="width:100%; max-width:500px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1); display:block; margin:0 auto;">
+        <div class="gallery" id="galleryContainer"></div>
     </section>
 
     <section class="fade-section" id="files">
@@ -368,11 +372,6 @@
     <section class="fade-section" id="articles">
         <h2>مقالات</h2>
         <div class="articles" id="articlesContainer"></div>
-    </section>
-
-    <section class="fade-section" id="about">
-        <h2>من أنا</h2>
-        <p>أعمل في عدة مجالات تجارية بزنجبار، تنزانيا، وأسهم في العمل المجتمعي والسياسي. أشغل حاليًا منصب السكرتير المالي لمنظمة منتدى الشباب، ولدي إسهامات في مجال حقوق الإنسان.</p>
     </section>
 
     <section class="fade-section" id="projects">
@@ -406,6 +405,21 @@
         <a href="todo.html" class="contact-btn">جرّب تطبيق قائمة المهام</a>
     </section>
 
+    <section class="fade-section" id="skills">
+        <h2>مهاراتي</h2>
+        <div class="skills">
+            <span class="skill-tag">إدارة أعمال</span>
+            <span class="skill-tag">تجارة دولية</span>
+            <span class="skill-tag">تصميم مواقع</span>
+            <span class="skill-tag">عمل مجتمعي</span>
+        </div>
+    </section>
+
+    <section class="fade-section" id="about">
+        <h2>من أنا</h2>
+        <p>أعمل في عدة مجالات تجارية بزنجبار، تنزانيا، وأسهم في العمل المجتمعي والسياسي. أشغل حاليًا منصب السكرتير المالي لمنظمة منتدى الشباب، ولدي إسهامات في مجال حقوق الإنسان.</p>
+    </section>
+
     <section class="fade-section" id="contact">
         <h2>تواصل معي</h2>
 
@@ -437,6 +451,14 @@
 
         /* ====== الفيديوهات والمقالات: تضاف بسطر واحد بس ====== */
 
+        /* ====== الفيديوهات والمقالات والصور: تضاف بسطر واحد بس ====== */
+
+        // عشان تضيف صورة جديدة: ارفع ملف الصورة على GitHub بجنب index.html
+        // وضيف اسم الملف هنا (والوصف اللي هيظهر لو الصورة متعرفتش تفتح)
+        var imageList = [
+            { src: "project1.jpg", alt: "صورة من أعمالي" }
+        ];
+
         // عشان تضيف فيديو جديد: انسخ كود الفيديو من رابط يوتيوب
         // مثال: youtube.com/watch?v=ABC123 -> الكود هو ABC123
         // وضيفه هنا كسطر جديد في القائمة
@@ -455,6 +477,19 @@
                 summary: "وصف قصير للمقال يظهر تحت العنوان (سطر أو سطرين)."
             }
         ];
+
+        // بتبني كل صور imageList وتحطهم جوه galleryContainer
+        function renderGallery() {
+            var container = document.getElementById("galleryContainer");
+            container.innerHTML = "";
+
+            imageList.forEach(function (image) {
+                var img = document.createElement("img");
+                img.src = image.src;
+                img.alt = image.alt;
+                container.appendChild(img);
+            });
+        }
 
         // بتبني كل فيديوهات videoList وتحطهم جوه videosContainer
         function renderVideos() {
@@ -504,6 +539,7 @@
             });
         }
 
+        renderGallery();
         renderVideos();
         renderArticles();
 
