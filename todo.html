@@ -4,14 +4,45 @@
     <meta charset="UTF-8">
     <title>قائمة مهامي</title>
     <style>
+        :root {
+            --bg: #f0f4f8;
+            --text: #2c3e50;
+            --card-bg: #ffffff;
+            --card-text: #333;
+            --input-bg: #ffffff;
+            --input-border: #cccccc;
+            --counter-text: #555;
+        }
+        [data-theme="dark"] {
+            --bg: #121a22;
+            --text: #eaf6f3;
+            --card-bg: #1c2833;
+            --card-text: #dcdcdc;
+            --input-bg: #24303c;
+            --input-border: #3a4a5a;
+            --counter-text: #b0b8c0;
+        }
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f4f8;
+            background-color: var(--bg);
             text-align: center;
             padding: 40px 20px;
+            transition: background-color 0.3s ease;
         }
         h1 {
-            color: #2c3e50;
+            color: var(--text);
+        }
+        .theme-toggle {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background: none;
+            border: 1px solid var(--text);
+            color: var(--text);
+            font-size: 16px;
+            padding: 6px 10px;
+            border-radius: 50%;
+            cursor: pointer;
         }
         .input-area {
             margin: 20px 0;
@@ -20,9 +51,11 @@
             padding: 10px;
             font-size: 16px;
             border-radius: 8px;
-            border: 1px solid #ccc;
+            border: 1px solid var(--input-border);
             width: 60%;
             max-width: 300px;
+            background-color: var(--input-bg);
+            color: var(--card-text);
         }
         button {
             background-color: #16a085;
@@ -41,7 +74,7 @@
             margin: 0 auto;
         }
         li {
-            background: white;
+            background: var(--card-bg);
             padding: 12px 16px;
             margin: 8px 0;
             border-radius: 8px;
@@ -49,11 +82,13 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
         }
         li span {
             cursor: pointer;
             flex: 1;
             text-align: right;
+            color: var(--card-text);
         }
         li.done span {
             text-decoration: line-through;
@@ -100,19 +135,27 @@
         }
         #counter {
             max-width: 400px;
-            margin: 0 auto 15px;
-            color: #555;
+            margin: 0 auto 10px;
+            color: var(--counter-text);
             font-size: 14px;
+        }
+        .clear-done-btn {
+            background-color: #7f8c8d;
+            font-size: 13px;
+            padding: 6px 14px;
+            margin: 0 0 15px;
         }
     </style>
 </head>
 <body>
 
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
+
     <h1>قائمة مهامي</h1>
 
     <div class="input-area">
         <button onclick="addTask()">إضافة</button>
-        <input type="text" id="taskInput" placeholder="اكتب مهمة جديدة">
+        <input type="text" id="taskInput" placeholder="اكتب مهمة جديدة" onkeydown="handleInputKey(event)">
     </div>
 
     <div class="filter-area">
@@ -123,12 +166,36 @@
 
     <div id="counter"></div>
 
+    <button class="clear-done-btn" onclick="clearCompleted()">مسح كل المنجز</button>
+
     <ul id="taskList"></ul>
 
     <script>
 
         // بيحدد الفلتر الحالي: "all" أو "active" (غير منجز) أو "done" (منجز)
         var currentFilter = "all";
+
+        // بتتفعل لما تدوس أي مفتاح جوه حقل إضافة المهمة
+        function handleInputKey(event) {
+            if (event.key === "Enter") {
+                addTask();
+            }
+        }
+
+        /* ====== الدارك مود ====== */
+        function applyTheme(theme) {
+            document.documentElement.setAttribute("data-theme", theme);
+            localStorage.setItem("theme", theme);
+            document.getElementById("themeToggle").textContent = (theme === "dark") ? "☀️" : "🌙";
+        }
+
+        function toggleTheme() {
+            var current = document.documentElement.getAttribute("data-theme");
+            applyTheme(current === "dark" ? "light" : "dark");
+        }
+
+        // نطبق آخر اختيار محفوظ (بيشتغل حتى لو محفوظ من صفحة الموقع الرئيسية، لأنه بيستخدم نفس المفتاح "theme")
+        applyTheme(localStorage.getItem("theme") || "light");
 
         // بتضيف مهمة جديدة
         function addTask() {
@@ -254,6 +321,21 @@
                     li.style.display = "none";
                 }
             }
+        }
+
+        // بتمسح كل المهام المنجزة (اللي عليها خط) دفعة واحدة
+        function clearCompleted() {
+            var items = document.getElementById("taskList").getElementsByTagName("li");
+
+            // بنلف من الآخر للأول عشان مسح عناصر من مصفوفة حية ميبوظش الترقيم
+            for (var i = items.length - 1; i >= 0; i--) {
+                if (items[i].classList.contains("done")) {
+                    items[i].remove();
+                }
+            }
+
+            saveTasks();
+            updateCounter();
         }
 
         // بتحسب عدد المهام الغير منجزة من الإجمالي وتعرضها
