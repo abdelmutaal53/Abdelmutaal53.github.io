@@ -13,16 +13,53 @@
         html {
             scroll-behavior: smooth;
         }
+
+        /* متغيرات الألوان: الوضع الفاتح (الافتراضي) */
+        :root {
+            --bg: #f0f4f8;
+            --text: #333;
+            --header-bg: #2c3e50;
+            --header-text: #ffffff;
+            --header-sub: #bdc3c7;
+            --navbar-bg: #1c2833;
+            --navbar-text: #ecf0f1;
+            --card-bg: #ffffff;
+            --card-text: #555;
+            --title-color: #2c3e50;
+            --input-bg: #ffffff;
+            --input-border: #cccccc;
+            --footer-text: #888888;
+        }
+
+        /* متغيرات الألوان: الوضع الداكن */
+        [data-theme="dark"] {
+            --bg: #121a22;
+            --text: #dcdcdc;
+            --header-bg: #0d1117;
+            --header-text: #f0f0f0;
+            --header-sub: #9aa5b1;
+            --navbar-bg: #0d1117;
+            --navbar-text: #dcdcdc;
+            --card-bg: #1c2833;
+            --card-text: #c5c5c5;
+            --title-color: #eaf6f3;
+            --input-bg: #24303c;
+            --input-border: #3a4a5a;
+            --footer-text: #778;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f4f8;
-            color: #333;
+            background-color: var(--bg);
+            color: var(--text);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         header {
-            background-color: #2c3e50;
-            color: white;
+            background-color: var(--header-bg);
+            color: var(--header-text);
             text-align: center;
             padding: 60px 20px;
+            transition: background-color 0.3s ease;
         }
         header h1 {
             font-size: 32px;
@@ -30,23 +67,25 @@
         }
         header p {
             font-size: 18px;
-            color: #bdc3c7;
+            color: var(--header-sub);
         }
 
         /* قائمة التنقل */
         .navbar {
-            background-color: #1c2833;
+            background-color: var(--navbar-bg);
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            align-items: center;
             gap: 8px;
             padding: 12px 10px;
             position: sticky;
             top: 0;
             z-index: 100;
+            transition: background-color 0.3s ease;
         }
         .navbar a {
-            color: #ecf0f1;
+            color: var(--navbar-text);
             text-decoration: none;
             font-size: 14px;
             padding: 8px 14px;
@@ -56,6 +95,16 @@
         .navbar a:hover {
             background-color: #16a085;
         }
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--navbar-text);
+            color: var(--navbar-text);
+            font-size: 15px;
+            padding: 6px 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            line-height: 1;
+        }
 
         section {
             padding: 40px 20px;
@@ -64,7 +113,7 @@
             scroll-margin-top: 70px; /* عشان العنوان ميتغطاش وراء الـ navbar وقت القفز للقسم */
         }
         section h2 {
-            color: #2c3e50;
+            color: var(--title-color);
             border-bottom: 3px solid #16a085;
             display: inline-block;
             padding-bottom: 5px;
@@ -88,19 +137,20 @@
             gap: 20px;
         }
         .project-card {
-            background-color: white;
+            background-color: var(--card-bg);
             border-radius: 12px;
             padding: 20px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             border-right: 4px solid #16a085;
+            transition: background-color 0.3s ease;
         }
         .project-card h3 {
-            color: #2c3e50;
+            color: var(--title-color);
             margin-bottom: 8px;
             font-size: 18px;
         }
         .project-card p {
-            color: #555;
+            color: var(--card-text);
             font-size: 15px;
             line-height: 1.6;
             margin-bottom: 10px;
@@ -147,6 +197,58 @@
         .tw { background-color: #14171a; }
         .wa { background-color: #25d366; }
 
+        /* الفيديوهات */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* المقالات */
+        .articles {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .article-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 18px 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-right: 4px solid #2980b9;
+            text-align: right;
+            transition: background-color 0.3s ease;
+        }
+        .article-card h3 {
+            margin-bottom: 6px;
+            font-size: 17px;
+        }
+        .article-card h3 a {
+            color: var(--title-color);
+            text-decoration: none;
+        }
+        .article-card h3 a:hover {
+            text-decoration: underline;
+        }
+        .article-card p {
+            color: var(--card-text);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
         /* فورم التواصل */
         .contact-form {
             display: flex;
@@ -158,11 +260,13 @@
         .contact-form input,
         .contact-form textarea {
             padding: 12px;
-            border: 1px solid #ccc;
+            border: 1px solid var(--input-border);
             border-radius: 8px;
             font-size: 15px;
             font-family: inherit;
             resize: vertical;
+            background-color: var(--input-bg);
+            color: var(--text);
         }
         .form-status {
             font-size: 14px;
@@ -172,8 +276,19 @@
         footer {
             text-align: center;
             padding: 20px;
-            color: #888;
+            color: var(--footer-text);
             font-size: 14px;
+        }
+
+        /* تأثيرات الظهور عند السكرول */
+        .fade-section {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* تصميم متجاوب للموبايل */
@@ -213,22 +328,54 @@
     </header>
 
     <nav class="navbar">
-        <a href="#about">من أنا</a>
-        <a href="#projects">مشاريعي</a>
-        <a href="#skills">مهاراتي</a>
         <a href="#gallery">معرض الأعمال</a>
         <a href="#files">ملفات</a>
         <a href="#videos">فيديوهات</a>
+        <a href="#articles">مقالات</a>
+        <a href="#projects">مشاريعي</a>
         <a href="#todo">مشروعي البرمجي</a>
+        <a href="#skills">مهاراتي</a>
+        <a href="#about">من أنا</a>
         <a href="#contact">تواصل معي</a>
+        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
     </nav>
 
-    <section id="about">
+    <section class="fade-section" id="skills">
+        <h2>مهاراتي</h2>
+        <div class="skills">
+            <span class="skill-tag">إدارة أعمال</span>
+            <span class="skill-tag">تجارة دولية</span>
+            <span class="skill-tag">تصميم مواقع</span>
+            <span class="skill-tag">عمل مجتمعي</span>
+        </div>
+    </section>
+
+    <section class="fade-section" id="gallery">
+        <h2>معرض الأعمال</h2>
+        <img src="project1.jpg" alt="صورة من أعمالي" style="width:100%; max-width:500px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1); display:block; margin:0 auto;">
+    </section>
+
+    <section class="fade-section" id="files">
+        <h2>ملفات ومستندات</h2>
+        <a href="%D8%AA%D8%B4%D8%AD%D9%8A%D8%B0%20%D8%A7%D9%84%D8%A3%D8%B0%D9%87%D8%A7%D9%86%20%D8%A8%D8%B3%D9%8A%D8%B1%D8%A9%20%D8%A8%D9%84%D8%A7%D8%AF%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%20%D9%88%20%D8%A7%D9%84%D8%B3%D9%88%D8%AF%D8%A7%D9%86.pdf" target="_blank" class="contact-btn">تصفح الكتاب (PDF)</a>
+    </section>
+
+    <section class="fade-section" id="videos">
+        <h2>فيديوهات</h2>
+        <div id="videosContainer"></div>
+    </section>
+
+    <section class="fade-section" id="articles">
+        <h2>مقالات</h2>
+        <div class="articles" id="articlesContainer"></div>
+    </section>
+
+    <section class="fade-section" id="about">
         <h2>من أنا</h2>
         <p>أعمل في عدة مجالات تجارية بزنجبار، تنزانيا، وأسهم في العمل المجتمعي والسياسي. أشغل حاليًا منصب السكرتير المالي لمنظمة منتدى الشباب، ولدي إسهامات في مجال حقوق الإنسان.</p>
     </section>
 
-    <section id="projects">
+    <section class="fade-section" id="projects">
         <h2>مشاريعي</h2>
         <div class="projects">
 
@@ -253,49 +400,13 @@
         </div>
     </section>
 
-    <section id="skills">
-        <h2>مهاراتي</h2>
-        <div class="skills">
-            <span class="skill-tag">إدارة أعمال</span>
-            <span class="skill-tag">تجارة دولية</span>
-            <span class="skill-tag">تصميم مواقع</span>
-            <span class="skill-tag">عمل مجتمعي</span>
-        </div>
-    </section>
-
-    <section id="gallery">
-        <h2>معرض الأعمال</h2>
-        <img src="project1.jpg" alt="صورة من أعمالي" style="width:100%; max-width:500px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1); display:block; margin:0 auto;">
-    </section>
-
-    <section id="files">
-        <h2>ملفات ومستندات</h2>
-        <a href="%D8%AA%D8%B4%D8%AD%D9%8A%D8%B0%20%D8%A7%D9%84%D8%A3%D8%B0%D9%87%D8%A7%D9%86%20%D8%A8%D8%B3%D9%8A%D8%B1%D8%A9%20%D8%A8%D9%84%D8%A7%D8%AF%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%20%D9%88%20%D8%A7%D9%84%D8%B3%D9%88%D8%AF%D8%A7%D9%86.pdf" target="_blank" class="contact-btn">تصفح الكتاب (PDF)</a>
-    </section>
-
-    <section id="videos">
-        <h2>فيديوهات</h2>
-        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; max-width:100%; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1); margin-bottom:20px;">
-            <iframe src="https://www.youtube.com/embed/_O_g2l9Ndp0" style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" allowfullscreen></iframe>
-        </div>
-        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; max-width:100%; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1); margin-bottom:20px;">
-            <iframe src="https://www.youtube.com/embed/6qkFlIZ1f6Y" style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" allowfullscreen></iframe>
-        </div>
-        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; max-width:100%; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1); margin-bottom:20px;">
-            <iframe src="https://www.youtube.com/embed/_ssVN3bS6OI" style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" allowfullscreen></iframe>
-        </div>
-        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; max-width:100%; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
-            <iframe src="https://www.youtube.com/embed/I6ExplRs8hg" style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" allowfullscreen></iframe>
-        </div>
-    </section>
-
-    <section id="todo">
+    <section class="fade-section" id="todo">
         <h2>مشروعي البرمجي</h2>
         <p>جربت أبني تطبيق قائمة مهام تفاعلي بلغة JavaScript.</p>
         <a href="todo.html" class="contact-btn">جرّب تطبيق قائمة المهام</a>
     </section>
 
-    <section id="contact">
+    <section class="fade-section" id="contact">
         <h2>تواصل معي</h2>
 
         <p>هل لديك مشروع أو فكرة؟ راسلني!</p>
@@ -310,7 +421,6 @@
         <a href="mailto:abdelmutaal53@gmail.com" class="contact-btn">راسلني عبر الإيميل</a>
 
         <!-- فورم تواصل فعلي: بيبعت الرسالة مباشرة لإيميلك عن طريق خدمة Formspree -->
-        <!-- لازم تستبدل YOUR_FORM_ID برقم الفورم بتاعك بعد التسجيل في formspree.io -->
         <form action="https://formspree.io/f/mrenlbll" method="POST" class="contact-form">
             <input type="text" name="name" placeholder="الاسم" required>
             <input type="email" name="email" placeholder="البريد الإلكتروني" required>
@@ -322,6 +432,122 @@
     <footer>
         © 2026 عبدالمتعال صابون
     </footer>
+
+    <script>
+
+        /* ====== الفيديوهات والمقالات: تضاف بسطر واحد بس ====== */
+
+        // عشان تضيف فيديو جديد: انسخ كود الفيديو من رابط يوتيوب
+        // مثال: youtube.com/watch?v=ABC123 -> الكود هو ABC123
+        // وضيفه هنا كسطر جديد في القائمة
+        var videoList = [
+            "_O_g2l9Ndp0",
+            "6qkFlIZ1f6Y",
+            "_ssVN3bS6OI",
+            "I6ExplRs8hg"
+        ];
+
+        // عشان تضيف مقال جديد: ضيف object جديد فيه العنوان والرابط ووصف قصير
+        var articleList = [
+            {
+                title: "مثال: عنوان المقال الأول",
+                url: "https://example.com/article1",
+                summary: "وصف قصير للمقال يظهر تحت العنوان (سطر أو سطرين)."
+            }
+        ];
+
+        // بتبني كل فيديوهات videoList وتحطهم جوه videosContainer
+        function renderVideos() {
+            var container = document.getElementById("videosContainer");
+            container.innerHTML = ""; // نفضّي المحتوى القديم الأول (لو موجود)
+
+            videoList.forEach(function (videoId) {
+                var wrapper = document.createElement("div");
+                wrapper.className = "video-wrapper";
+
+                var iframe = document.createElement("iframe");
+                iframe.src = "https://www.youtube.com/embed/" + videoId;
+                iframe.allowFullscreen = true;
+
+                wrapper.appendChild(iframe);
+                container.appendChild(wrapper);
+            });
+        }
+
+        // بتبني كل مقالات articleList وتحطهم جوه articlesContainer
+        function renderArticles() {
+            var container = document.getElementById("articlesContainer");
+            container.innerHTML = "";
+
+            if (articleList.length === 0) {
+                container.innerHTML = "<p>لا توجد مقالات بعد.</p>";
+                return;
+            }
+
+            articleList.forEach(function (article) {
+                var card = document.createElement("div");
+                card.className = "article-card";
+
+                var title = document.createElement("h3");
+                var link = document.createElement("a");
+                link.href = article.url;
+                link.target = "_blank";
+                link.textContent = article.title;
+                title.appendChild(link);
+
+                var summary = document.createElement("p");
+                summary.textContent = article.summary;
+
+                card.appendChild(title);
+                card.appendChild(summary);
+                container.appendChild(card);
+            });
+        }
+
+        renderVideos();
+        renderArticles();
+
+
+        /* ====== الدارك مود ====== */
+
+        // بتطبق الوضع (فاتح/داكن) على الصفحة، وتحفظ الاختيار، وتغيّر شكل الزرار
+        function applyTheme(theme) {
+            document.documentElement.setAttribute("data-theme", theme);
+            localStorage.setItem("theme", theme);
+            document.getElementById("themeToggle").textContent = (theme === "dark") ? "☀️" : "🌙";
+        }
+
+        // بتبدّل بين الوضعين لما تدوس الزرار
+        function toggleTheme() {
+            var current = document.documentElement.getAttribute("data-theme");
+            var next = (current === "dark") ? "light" : "dark";
+            applyTheme(next);
+        }
+
+        // أول ما الصفحة تفتح: نطبق آخر اختيار كان محفوظ (أو الوضع الفاتح كافتراضي)
+        var savedTheme = localStorage.getItem("theme") || "light";
+        applyTheme(savedTheme);
+
+
+        /* ====== تأثيرات الظهور عند السكرول ====== */
+
+        // IntersectionObserver بيراقب كل عنصر ليه class="fade-section"
+        // ولما العنصر يظهر جوه الشاشة، بيضيفله class="visible" فيشتغل تأثير الحركة في الـ CSS
+        var sectionObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    sectionObserver.unobserve(entry.target); // نوقف المراقبة بعد ما يظهر مرة واحدة
+                }
+            });
+        }, { threshold: 0.15 }); // يتفعّل لما 15% من العنصر يبقى ظاهر
+
+        var fadeSections = document.querySelectorAll(".fade-section");
+        fadeSections.forEach(function (section) {
+            sectionObserver.observe(section);
+        });
+
+    </script>
 
 </body>
 </html>
