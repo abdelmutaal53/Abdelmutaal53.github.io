@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بورتفوليو - عبدالمتعال صابون</title>
+    <title>بورتفوليو - مجموعة صابون يوسف</title>
     <style>
         * {
             margin: 0;
@@ -119,6 +119,24 @@
             padding-bottom: 5px;
             margin-bottom: 20px;
         }
+        .sector {
+            background-color: var(--card-bg);
+            color: var(--card-text);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .sector h3 {
+            color: var(--title-color);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .sector ul {
+            padding-right: 20px;
+            line-height: 1.9;
+        }
+        .sector li { margin-bottom: 6px; }
         .skills {
             display: flex;
             flex-wrap: wrap;
@@ -354,11 +372,12 @@
 <body>
 
     <header>
-        <h1>عبدالمتعال صابون</h1>
-        <p>رجل أعمال وناشط في المجتمع المدني | زنجبار، تنزانيا</p>
+        <h1>مجموعة صابون يوسف</h1>
+        <p>مجموعة صابون يوسف التجارية تعنى بالتجارة الدولية في الاستيراد والتصدير وأعمال الوساطة والسفر والسياحة.</p>
     </header>
 
     <nav class="navbar">
+        <a href="#sectors">القطاعات</a>
         <a href="#gallery">معرض الأعمال</a>
         <a href="#files">ملفات</a>
         <a href="#videos">فيديوهات</a>
@@ -372,6 +391,34 @@
         <a href="yousif.html">مجموعة صابون يوسف</a>
         <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
     </nav>
+
+    <section class="fade-section" id="sectors">
+        <h2>قطاعات العمل الرئيسية</h2>
+
+        <div class="sector">
+            <h3>التجارة الدولية (الاستيراد والتصدير)</h3>
+            <ul>
+                <li>إدارة وتنفيذ عمليات التوريد والشحن التجاري للبضائع والسلع المختلفة.</li>
+                <li>التعامل مع المستندات التجارية المعقدة مثل الاعتمادات المستندية (Letters of Credit) وبوالص الشحن لضمان سلاسة حركة السلع عبر الحدود.</li>
+            </ul>
+        </div>
+
+        <div class="sector">
+            <h3>أعمال الوساطة التجارية</h3>
+            <ul>
+                <li>تقديم خدمات الوساطة الموثوقة لتسهيل صفقات البيع والشراء بين الشركات والمصنعين.</li>
+                <li>ربط الأسواق الإقليمية (خصوصاً في شرق أفريقيا والمنطقة العربية) بالفرص التجارية الواعدة.</li>
+            </ul>
+        </div>
+
+        <div class="sector">
+            <h3>قطاع السفر والسياحة</h3>
+            <ul>
+                <li>تنظيم البرامج السياحية وتقديم خدمات الحجوزات المتكاملة (طيران، فنادق، وتذاكر السفر).</li>
+                <li>تصميم حملات ترويجية واستكشافية للوجهات السياحية المميزة، مع التركيز على الأسواق الجذابة مثل شرق أفريقيا (تنزانيا وزنجبار ودبي).</li>
+            </ul>
+        </div>
+    </section>
 
     <section class="fade-section" id="gallery">
         <h2>معرض الأعمال</h2>
@@ -497,7 +544,7 @@ graph TD
     </section>
 
     <footer>
-        © 2026 عبدالمتعال صابون
+        © 2026 مجموعة صابون يوسف التجارية
     </footer>
 
     <script>
