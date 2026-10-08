@@ -249,6 +249,23 @@
             line-height: 1.6;
         }
 
+        /* مخطط مشروع BBA */
+        .mermaid-wrapper {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow-x: auto;
+            margin-bottom: 25px;
+            transition: background-color 0.3s ease;
+        }
+        .mermaid-wrapper .mermaid {
+            text-align: center;
+        }
+        #bbaVideoContainer:empty {
+            display: none;
+        }
+
         /* معرض الصور */
         .gallery {
             display: grid;
@@ -346,6 +363,7 @@
         <a href="#files">ملفات</a>
         <a href="#videos">فيديوهات</a>
         <a href="#articles">مقالات</a>
+        <a href="#bba">مشروع BBA</a>
         <a href="#projects">مشاريعي</a>
         <a href="#todo">مشروعي البرمجي</a>
         <a href="#skills">مهاراتي</a>
@@ -372,6 +390,40 @@
     <section class="fade-section" id="articles">
         <h2>مقالات</h2>
         <div class="articles" id="articlesContainer"></div>
+    </section>
+
+    <section class="fade-section" id="bba">
+        <h2>مشروع بنك إفريقيا للسبائك (BBA)</h2>
+        <div id="bbaVideoContainer"></div>
+        <div class="mermaid-wrapper">
+            <div class="mermaid">
+graph TD
+    Root["مشروع بنك إفريقيا للسبائك (BBA) <br> التنزاني - الزنجباري"] --> M1
+    Root --> M2
+    Root --> M3
+    Root --> M4
+
+    subgraph M1 ["1. ابتكار الأدوات المالية الإقليمية"]
+        M1_1["شهادات الادخار المدعومة بالذهب <br> (Gold-Linked Notes)"] --> M1_Goal["حماية المدخرات من التضخم <br> وبناء احتياطي صلب"]
+        M1_2["محفظة التمويل الرقمي لصغار المعدنين <br> (Mobile Gold Wallet)"] --> M1_Goal2["تجفيف منابع التهريب <br> ودمج التعدين الأهلي"]
+    end
+
+    subgraph M2 ["2. هندسة النموذج التجاري (زنجبار - دار السلام)"]
+        M2_1["منطقة زنجبار الحرة للخدمات المالية <br> (Zanzibar Gold Free Zone)"] --> M2_Goal["مستودعات آمنة وحوافز ضريبية <br> لتصبح دبي إفريقيا"]
+        M2_2["ممر التجارة المشتركة (المقايضة)"] --> M2_Goal2["تسوية الذهب مقابل <br> التكنولوجيا والآليات الزراعية"]
+    end
+
+    subgraph M3 ["3. استراتيجيات التحفيز والاندماج الاقتصادي"]
+        M3_1["تمويل البنية التحتية مقابل الذهب <br> (Gold-for-Infrastructure PPP)"] --> M3_Goal["تنفيذ الطرق والطاقة <br> بدون ديون سيادية باهظة"]
+        M3_2["صندوق التنمية المجتمعية"] --> M3_Goal2["دعم الصحة والتعليم في <br> مناطق التعدين لكسب الحاضنة الشعبية"]
+    end
+
+    subgraph M4 ["4. الحوكمة الرقمية المتطورة والتتبع"]
+        M4_1["نظام التتبع الرقمي (Blockchain)"] --> M4_Goal["تسجيل رحلة السبيكة <br> من المنجم حتى التصدير"]
+        M4_2["معايير التعدين المسؤول (Responsible Sourcing)"] --> M4_Goal2["ضمان أعلى الأسعار والقبول <br> في البورصات العالمية"]
+    end
+            </div>
+        </div>
     </section>
 
     <section class="fade-section" id="projects">
@@ -539,6 +591,26 @@
             });
         }
 
+        // فيديو مشروع BBA: حط كود فيديو يوتيوب هنا (زي ABC123) وسيبه فاضي لو مش جاهز
+        var bbaVideoId = "";
+
+        // بتعرض فيديو مشروع BBA لو فيه كود، ولو فاضي بتخفي المكان
+        function renderBBAVideo() {
+            var container = document.getElementById("bbaVideoContainer");
+            container.innerHTML = "";
+            if (!bbaVideoId) {
+                return;
+            }
+            var wrapper = document.createElement("div");
+            wrapper.className = "video-wrapper";
+            var iframe = document.createElement("iframe");
+            iframe.src = "https://www.youtube.com/embed/" + bbaVideoId;
+            iframe.allowFullscreen = true;
+            wrapper.appendChild(iframe);
+            container.appendChild(wrapper);
+        }
+
+        renderBBAVideo();
         renderGallery();
         renderVideos();
         renderArticles();
@@ -583,6 +655,13 @@
             sectionObserver.observe(section);
         });
 
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        // بتحول كود Mermaid لمخطط مرسوم على الصفحة
+        mermaid.initialize({ startOnLoad: false, theme: "default", flowchart: { htmlLabels: true } });
+        mermaid.run({ querySelector: ".mermaid" });
     </script>
 
 </body>
