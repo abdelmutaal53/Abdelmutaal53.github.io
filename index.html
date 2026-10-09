@@ -119,6 +119,91 @@
             padding-bottom: 5px;
             margin-bottom: 20px;
         }
+        .ad-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .ad-card {
+            background-color: var(--card-bg);
+            color: var(--card-text);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .ad-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            background: #cfd8dc;
+        }
+        .ad-card .ad-text { padding: 12px 16px; }
+        .ad-card h3 { color: var(--title-color); font-size: 17px; margin-bottom: 6px; }
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--card-bg);
+            color: var(--card-text);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .price-table th, .price-table td {
+            padding: 12px 14px;
+            text-align: right;
+            border-bottom: 1px solid rgba(128,128,128,0.25);
+        }
+        .price-table th { color: var(--title-color); }
+        .ads-intro { margin-bottom: 18px; }
+        .ad-featured { margin-bottom: 20px; text-align: center; }
+        .ad-featured img {
+            width: 100%;
+            max-width: 520px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+            cursor: zoom-in;
+        }
+        .ad-card img { cursor: zoom-in; height: auto; }
+        .price-title { color: var(--title-color); margin: 10px 0 12px; }
+        .table-wrap { overflow-x: auto; }
+        .price-table td.price { font-weight: bold; color: var(--title-color); white-space: nowrap; }
+        .price-note { font-size: 14px; opacity: 0.8; margin-top: 10px; }
+        .book-box {
+            margin-top: 24px;
+            padding: 18px;
+            border-radius: 12px;
+            background-color: var(--card-bg);
+            color: var(--card-text);
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .book-box h3 { color: var(--title-color); margin-bottom: 12px; }
+        .book-buttons { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .wa-btn, .call-btn {
+            display: inline-block;
+            padding: 12px 18px;
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .wa-btn { background: #25a244; }
+        .call-btn { background: #12606b; }
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox.open { display: flex; }
+        .lightbox img { max-width: 96%; max-height: 92%; border-radius: 8px; }
+        .lightbox-close { position: absolute; top: 14px; left: 20px; color: #fff; font-size: 40px; cursor: pointer; }
         .sector {
             background-color: var(--card-bg);
             color: var(--card-text);
@@ -378,6 +463,7 @@
 
     <nav class="navbar">
         <a href="#sectors">القطاعات</a>
+        <a href="#ads">حزم زنجبار</a>
         <a href="#gallery">معرض الأعمال</a>
         <a href="#files">ملفات</a>
         <a href="#videos">فيديوهات</a>
@@ -419,6 +505,59 @@
             </ul>
         </div>
     </section>
+
+    <section class="fade-section" id="ads">
+        <h2>حزم زنجبار السياحية</h2>
+        <p class="ads-intro">عروض سياحية متكاملة في زنجبار، جزيرة الأحلام. اضغط على أي صورة لتكبيرها.</p>
+
+        <div class="ad-featured">
+            <img src="zanzibar-family.jpg" alt="حزمة العائلات الاقتصادية - 10 أيام - تبدأ من 750 دولار" loading="lazy" onclick="openLightbox(this.src)">
+        </div>
+
+        <div class="ad-grid">
+            <div class="ad-card">
+                <img src="zanzibar-packages-1.jpg" alt="جميع حزم زنجبار" loading="lazy" onclick="openLightbox(this.src)">
+                <div class="ad-text"><h3>جميع الحزم</h3><p>العائلات والأفراد وشهر العسل بمستوياته المختلفة.</p></div>
+            </div>
+            <div class="ad-card">
+                <img src="zanzibar-packages-2.jpg" alt="باقات زنجبار بتصميم آخر" loading="lazy" onclick="openLightbox(this.src)">
+                <div class="ad-text"><h3>عروض إضافية</h3><p>تفاصيل البرامج والأنشطة لكل حزمة.</p></div>
+            </div>
+        </div>
+
+        <h3 class="price-title">قائمة الأسعار (للفرد)</h3>
+        <div class="table-wrap">
+            <table class="price-table">
+                <thead>
+                    <tr><th>الحزمة</th><th>المدة</th><th>السعر</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>العائلات (اقتصادي)</td><td>10 أيام</td><td class="price">من 750$</td></tr>
+                    <tr><td>الأفراد والأصدقاء (اقتصادي)</td><td>10 أيام</td><td class="price">من 750$</td></tr>
+                    <tr><td>شهر العسل (عادي)</td><td>10 أيام</td><td class="price">1500$</td></tr>
+                    <tr><td>شهر العسل (VIP)</td><td>10 أيام</td><td class="price">2500$</td></tr>
+                    <tr><td>شهر العسل (عادي)</td><td>15 يوم</td><td class="price">2250$</td></tr>
+                    <tr><td>شهر العسل (VIP)</td><td>15 يوم</td><td class="price">3500$</td></tr>
+                    <tr><td>شهر العسل (VVIP)</td><td>20 يوم</td><td class="price">5000$</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="price-note">الأسعار بالدولار الأمريكي للفرد، مع إمكانية التخصيص حسب الطلب.</p>
+
+        <div class="book-box">
+            <h3>احجز الآن</h3>
+            <div class="book-buttons">
+                <a class="wa-btn" href="https://wa.me/255773613116" target="_blank" rel="noopener">واتساب: أ. عبد المتعال صابون</a>
+                <a class="wa-btn" href="https://wa.me/255772413107" target="_blank" rel="noopener">واتساب: د. الظاهر</a>
+                <a class="call-btn" href="tel:+255773613116">اتصال: +255 773 613 116</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightboxImg" src="" alt="">
+    </div>
 
     <section class="fade-section" id="gallery">
         <h2>معرض الأعمال</h2>
@@ -712,5 +851,10 @@ graph TD
         mermaid.run({ querySelector: ".mermaid" });
     </script>
 
+    <script>
+        function openLightbox(src){ document.getElementById('lightboxImg').src = src; document.getElementById('lightbox').classList.add('open'); }
+        function closeLightbox(){ document.getElementById('lightbox').classList.remove('open'); }
+        document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+    </script>
 </body>
 </html>
