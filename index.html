@@ -181,6 +181,8 @@ html[dir=ltr] .wa-float{left:auto;right:20px}
 html[dir=ltr] .brand{flex-direction:row}
 @media(max-width:860px){html[dir=ltr] .strip div:nth-child(2){border-right:0}}
 
+html[lang=en] .poster-grid{grid-template-columns:repeat(2,1fr);max-width:760px;margin-inline:auto}
+@media(max-width:860px){html[lang=en] .poster-grid{grid-template-columns:1fr}}
 /* reveal */
 .reveal{opacity:0;transform:translateY(24px);transition:.7s}
 .reveal.show{opacity:1;transform:none}
@@ -232,7 +234,7 @@ html[dir=ltr] .brand{flex-direction:row}
       </div>
     </div>
     <div class="hero-poster">
-      <img src="zanzibar-family.jpg" alt="حزمة العائلات إلى زنجبار" onclick="openLightbox(this.src)">
+      <img src="zanzibar-family.jpg" data-en-src="zanzibar-family-en.jpg" alt="حزمة العائلات إلى زنجبار" onclick="openLightbox(this.src)">
       <span class="hero-badge">تبدأ من 750$</span>
     </div>
   </div>
@@ -352,9 +354,9 @@ html[dir=ltr] .brand{flex-direction:row}
     <div class="posters reveal">
       <h3>تفاصيل البرامج</h3>
       <div class="poster-grid">
-        <img src="zanzibar-family.jpg" alt="حزمة العائلات" loading="lazy" onclick="openLightbox(this.src)">
-        <img src="zanzibar-packages-1.jpg" alt="جميع حزم زنجبار" loading="lazy" onclick="openLightbox(this.src)">
-        <img src="zanzibar-packages-2.jpg" alt="برامج حزم زنجبار" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="zanzibar-family.jpg" data-en-src="zanzibar-family-en.jpg" alt="حزمة العائلات" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="zanzibar-packages-1.jpg" data-en-src="zanzibar-prices-en.jpg" alt="جميع حزم زنجبار" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="zanzibar-packages-2.jpg" data-en-hide alt="برامج حزم زنجبار" loading="lazy" onclick="openLightbox(this.src)">
       </div>
     </div>
   </div>
@@ -478,6 +480,11 @@ function walkText(l){
       else if(el[key]!==undefined){ el.setAttribute(a,el[key]); }
     });
   });
+  document.querySelectorAll('[data-en-src]').forEach(function(el){
+    if(el.__os===undefined) el.__os=el.getAttribute('src');
+    el.setAttribute('src', l==='en'?el.getAttribute('data-en-src'):el.__os);
+  });
+  document.querySelectorAll('[data-en-hide]').forEach(function(el){ el.style.display=(l==='en')?'none':''; });
   document.querySelectorAll('[data-en-html]').forEach(function(el){
     if(l==='en'){ if(el.__oh===undefined) el.__oh=el.innerHTML; el.innerHTML=el.getAttribute('data-en-html'); }
     else if(el.__oh!==undefined){ el.innerHTML=el.__oh; }
