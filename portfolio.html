@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بورتفوليو - عبدالمتعال صابون</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* متغيرات الألوان: الوضع الفاتح (الافتراضي) */
+        :root {
+            --bg: #f0f4f8;
+            --text: #333;
+            --header-bg: #2c3e50;
+            --header-text: #ffffff;
+            --header-sub: #bdc3c7;
+            --navbar-bg: #1c2833;
+            --navbar-text: #ecf0f1;
+            --card-bg: #ffffff;
+            --card-text: #555;
+            --title-color: #2c3e50;
+            --input-bg: #ffffff;
+            --input-border: #cccccc;
+            --footer-text: #888888;
+        }
+
+        /* متغيرات الألوان: الوضع الداكن */
+        [data-theme="dark"] {
+            --bg: #121a22;
+            --text: #dcdcdc;
+            --header-bg: #0d1117;
+            --header-text: #f0f0f0;
+            --header-sub: #9aa5b1;
+            --navbar-bg: #0d1117;
+            --navbar-text: #dcdcdc;
+            --card-bg: #1c2833;
+            --card-text: #c5c5c5;
+            --title-color: #eaf6f3;
+            --input-bg: #24303c;
+            --input-border: #3a4a5a;
+            --footer-text: #778;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            text-align: center;
+            padding: 60px 20px;
+            transition: background-color 0.3s ease;
+        }
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 18px;
+            color: var(--header-sub);
+        }
+
+        /* قائمة التنقل */
+        .navbar {
+            background-color: var(--navbar-bg);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 10px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: background-color 0.3s ease;
+        }
+        .navbar a {
+            color: var(--navbar-text);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+        .navbar a:hover {
+            background-color: #16a085;
+        }
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--navbar-text);
+            color: var(--navbar-text);
+            font-size: 15px;
+            padding: 6px 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        section {
+            padding: 40px 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            scroll-margin-top: 70px; /* عشان العنوان ميتغطاش وراء الـ navbar وقت القفز للقسم */
+        }
+        section h2 {
+            color: var(--title-color);
+            border-bottom: 3px solid #16a085;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+        .ad-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .ad-card {
+            background-color: var(--card-bg);
+            color: var(--card-text);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .ad-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            background: #cfd8dc;
+        }
+        .ad-card .ad-text { padding: 12px 16px; }
+        .ad-card h3 { color: var(--title-color); font-size: 17px; margin-bottom: 6px; }
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--card-bg);
+            color: var(--card-text);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .price-table th, .price-table td {
+            padding: 12px 14px;
+            text-align: right;
+            border-bottom: 1px solid rgba(128,128,128,0.25);
+        }
+        .price-table th { color: var(--title-color); }
+        .ads-intro { margin-bottom: 18px; }
+        .ad-featured { margin-bottom: 20px; text-align: center; }
+        .ad-featured img {
+            width: 100%;
+            max-width: 520px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+            cursor: zoom-in;
+        }
+        .ad-card img { cursor: zoom-in; height: auto; }
+        .price-title { color: var(--title-color); margin: 10px 0 12px; }
+        .table-wrap { overflow-x: auto; }
+        .price-table td.price { font-weight: bold; color: var(--title-color); white-space: nowrap; }
+        .price-note { font-size: 14px; opacity: 0.8; margin-top: 10px; }
+        .book-box {
+            margin-top: 24px;
+            padding: 18px;
+            border-radius: 12px;
+            background-color: var(--card-bg);
+            color: var(--card-text);
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .book-box h3 { color: var(--title-color); margin-bottom: 12px; }
+        .book-buttons { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .wa-btn, .call-btn {
+            display: inline-block;
+            padding: 12px 18px;
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .wa-btn { background: #25a244; }
+        .call-btn { background: #12606b; }
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox.open { display: flex; }
+        .lightbox img { max-width: 96%; max-height: 92%; border-radius: 8px; }
+        .lightbox-close { position: absolute; top: 14px; left: 20px; color: #fff; font-size: 40px; cursor: pointer; }
+        .sector {
+            background-color: var(--card-bg);
+            color: var(--card-text);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .sector h3 {
+            color: var(--title-color);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .sector ul {
+            padding-right: 20px;
+            line-height: 1.9;
+        }
+        .sector li { margin-bottom: 6px; }
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .skill-tag {
+            background-color: #16a085;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        .projects {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-right: 4px solid #16a085;
+            transition: background-color 0.3s ease;
+        }
+        .project-card h3 {
+            color: var(--title-color);
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+        .project-card p {
+            color: var(--card-text);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        .project-tag {
+            display: inline-block;
+            background-color: #eaf6f3;
+            color: #16a085;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin-top: 5px;
+        }
+        .contact-btn {
+            display: inline-block;
+            background-color: #16a085;
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border: none;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+        .fb { background-color: #1877f2; }
+        .ig { background-color: #d62976; }
+        .tw { background-color: #14171a; }
+        .wa { background-color: #25d366; }
+
+        /* الفيديوهات */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* المقالات */
+        .articles {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .article-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 18px 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-right: 4px solid #2980b9;
+            text-align: right;
+            transition: background-color 0.3s ease;
+        }
+        .article-card h3 {
+            margin-bottom: 6px;
+            font-size: 17px;
+        }
+        .article-card h3 a {
+            color: var(--title-color);
+            text-decoration: none;
+        }
+        .article-card h3 a:hover {
+            text-decoration: underline;
+        }
+        .article-card p {
+            color: var(--card-text);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* مخطط مشروع BBA */
+        .mermaid-wrapper {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow-x: auto;
+            margin-bottom: 25px;
+            transition: background-color 0.3s ease;
+        }
+        .mermaid-wrapper .mermaid {
+            text-align: center;
+        }
+        #bbaVideoContainer:empty {
+            display: none;
+        }
+
+        /* معرض الصور */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* فورم التواصل */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 450px;
+            margin-top: 25px;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            padding: 12px;
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            resize: vertical;
+            background-color: var(--input-bg);
+            color: var(--text);
+        }
+        .form-status {
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--footer-text);
+            font-size: 14px;
+        }
+
+        /* تأثيرات الظهور عند السكرول */
+        .fade-section {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* تصميم متجاوب للموبايل */
+        @media (max-width: 600px) {
+            header {
+                padding: 40px 15px;
+            }
+            header h1 {
+                font-size: 24px;
+            }
+            header p {
+                font-size: 14px;
+            }
+            section {
+                padding: 30px 15px;
+            }
+            .navbar a {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+            .project-card {
+                padding: 15px;
+            }
+            .social-btn,
+            .contact-btn {
+                font-size: 14px;
+                padding: 10px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>عبدالمتعال صابون</h1>
+        <p>رجل أعمال وناشط في المجتمع المدني | زنجبار، تنزانيا</p>
+    </header>
+
+    <nav class="navbar">
+        <a href="#gallery">معرض الأعمال</a>
+        <a href="#files">ملفات</a>
+        <a href="#videos">فيديوهات</a>
+        <a href="#articles">مقالات</a>
+        <a href="#bba">مشروع BBA</a>
+        <a href="#projects">مشاريعي</a>
+        <a href="#todo">مشروعي البرمجي</a>
+        <a href="#skills">مهاراتي</a>
+        <a href="#about">من أنا</a>
+        <a href="#contact">تواصل معي</a>
+        <a href="index.html">مجموعة صابون يوسف</a>
+        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
+    </nav>
+
+
+
+
+    <section class="fade-section" id="gallery">
+        <h2>معرض الأعمال</h2>
+        <div class="gallery" id="galleryContainer"></div>
+    </section>
+
+    <section class="fade-section" id="files">
+        <h2>ملفات ومستندات</h2>
+        <a href="%D8%AA%D8%B4%D8%AD%D9%8A%D8%B0%20%D8%A7%D9%84%D8%A3%D8%B0%D9%87%D8%A7%D9%86%20%D8%A8%D8%B3%D9%8A%D8%B1%D8%A9%20%D8%A8%D9%84%D8%A7%D8%AF%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%20%D9%88%20%D8%A7%D9%84%D8%B3%D9%88%D8%AF%D8%A7%D9%86.pdf" target="_blank" class="contact-btn">تصفح الكتاب (PDF)</a>
+    </section>
+
+    <section class="fade-section" id="videos">
+        <h2>فيديوهات</h2>
+        <div id="videosContainer"></div>
+    </section>
+
+    <section class="fade-section" id="articles">
+        <h2>مقالات</h2>
+        <div class="articles" id="articlesContainer"></div>
+    </section>
+
+    <section class="fade-section" id="bba">
+        <h2>مشروع بنك إفريقيا للسبائك (BBA)</h2>
+        <div id="bbaVideoContainer"></div>
+        <div class="mermaid-wrapper">
+            <div class="mermaid">
+graph TD
+    Root["مشروع بنك إفريقيا للسبائك (BBA) <br> التنزاني - الزنجباري"] --> M1
+    Root --> M2
+    Root --> M3
+    Root --> M4
+
+    subgraph M1 ["1. ابتكار الأدوات المالية الإقليمية"]
+        M1_1["شهادات الادخار المدعومة بالذهب <br> (Gold-Linked Notes)"] --> M1_Goal["حماية المدخرات من التضخم <br> وبناء احتياطي صلب"]
+        M1_2["محفظة التمويل الرقمي لصغار المعدنين <br> (Mobile Gold Wallet)"] --> M1_Goal2["تجفيف منابع التهريب <br> ودمج التعدين الأهلي"]
+    end
+
+    subgraph M2 ["2. هندسة النموذج التجاري (زنجبار - دار السلام)"]
+        M2_1["منطقة زنجبار الحرة للخدمات المالية <br> (Zanzibar Gold Free Zone)"] --> M2_Goal["مستودعات آمنة وحوافز ضريبية <br> لتصبح دبي إفريقيا"]
+        M2_2["ممر التجارة المشتركة (المقايضة)"] --> M2_Goal2["تسوية الذهب مقابل <br> التكنولوجيا والآليات الزراعية"]
+    end
+
+    subgraph M3 ["3. استراتيجيات التحفيز والاندماج الاقتصادي"]
+        M3_1["تمويل البنية التحتية مقابل الذهب <br> (Gold-for-Infrastructure PPP)"] --> M3_Goal["تنفيذ الطرق والطاقة <br> بدون ديون سيادية باهظة"]
+        M3_2["صندوق التنمية المجتمعية"] --> M3_Goal2["دعم الصحة والتعليم في <br> مناطق التعدين لكسب الحاضنة الشعبية"]
+    end
+
+    subgraph M4 ["4. الحوكمة الرقمية المتطورة والتتبع"]
+        M4_1["نظام التتبع الرقمي (Blockchain)"] --> M4_Goal["تسجيل رحلة السبيكة <br> من المنجم حتى التصدير"]
+        M4_2["معايير التعدين المسؤول (Responsible Sourcing)"] --> M4_Goal2["ضمان أعلى الأسعار والقبول <br> في البورصات العالمية"]
+    end
+            </div>
+        </div>
+    </section>
+
+    <section class="fade-section" id="projects">
+        <h2>مشاريعي</h2>
+        <div class="projects">
+
+            <div class="project-card">
+                <h3>تجارة الأجهزة الإلكترونية والكهربائية</h3>
+                <p>نشاط تجاري قائم في زنجبار يغطي كافة أقسام الأجهزة الإلكترونية والكهربائية.</p>
+                <span class="project-tag">تجارة</span>
+            </div>
+
+            <div class="project-card">
+                <h3>Zansun - شركة سياحية</h3>
+                <p>شركة سياحية قيد التأسيس في مدينة زنجبار، تهدف إلى تقديم خدمات سياحية متكاملة للزوار.</p>
+                <span class="project-tag">سياحة</span>
+            </div>
+
+            <div class="project-card">
+                <h3>الوساطة التجارية الدولية</h3>
+                <p>تسهيل الأعمال التجارية الدولية، بما في ذلك التعامل في مجال الذهب والأحجار الكريمة.</p>
+                <span class="project-tag">وساطة تجارية</span>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="fade-section" id="todo">
+        <h2>مشروعي البرمجي</h2>
+        <p>جربت أبني تطبيق قائمة مهام تفاعلي بلغة JavaScript.</p>
+        <a href="todo.html" class="contact-btn">جرّب تطبيق قائمة المهام</a>
+    </section>
+
+    <section class="fade-section" id="skills">
+        <h2>مهاراتي</h2>
+        <div class="skills">
+            <span class="skill-tag">إدارة أعمال</span>
+            <span class="skill-tag">تجارة دولية</span>
+            <span class="skill-tag">تصميم مواقع</span>
+            <span class="skill-tag">عمل مجتمعي</span>
+        </div>
+    </section>
+
+    <section class="fade-section" id="about">
+        <h2>من أنا</h2>
+        <p>أعمل في عدة مجالات تجارية بزنجبار، تنزانيا، وأسهم في العمل المجتمعي والسياسي. أشغل حاليًا منصب السكرتير المالي لمنظمة منتدى الشباب، ولدي إسهامات في مجال حقوق الإنسان.</p>
+    </section>
+
+    <section class="fade-section" id="contact">
+        <h2>تواصل معي</h2>
+
+        <p>هل لديك مشروع أو فكرة؟ راسلني!</p>
+
+        <div class="social-links">
+            <a href="https://www.facebook.com/share/1ELtJB6KuC/" class="social-btn fb" target="_blank">فيسبوك</a>
+            <a href="https://www.instagram.com/saboon56" class="social-btn ig" target="_blank">إنستغرام</a>
+            <a href="https://twitter.com/abdelmutaal" class="social-btn tw" target="_blank">تويتر / X</a>
+            <a href="https://wa.me/255679639116" class="social-btn wa" target="_blank">واتساب</a>
+        </div>
+
+        <a href="mailto:abdelmutaal53@gmail.com" class="contact-btn">راسلني عبر الإيميل</a>
+
+        <!-- فورم تواصل فعلي: بيبعت الرسالة مباشرة لإيميلك عن طريق خدمة Formspree -->
+        <form action="https://formspree.io/f/mrenlbll" method="POST" class="contact-form">
+            <input type="text" name="name" placeholder="الاسم" required>
+            <input type="email" name="email" placeholder="البريد الإلكتروني" required>
+            <textarea name="message" rows="5" placeholder="رسالتك" required></textarea>
+            <button type="submit" class="contact-btn">إرسال الرسالة</button>
+        </form>
+    </section>
+
+    <footer>
+        © 2026 عبدالمتعال صابون
+    </footer>
+
+    <script>
+
+        /* ====== الفيديوهات والمقالات: تضاف بسطر واحد بس ====== */
+
+        /* ====== الفيديوهات والمقالات والصور: تضاف بسطر واحد بس ====== */
+
+        // عشان تضيف صورة جديدة: ارفع ملف الصورة على GitHub بجنب index.html
+        // وضيف اسم الملف هنا (والوصف اللي هيظهر لو الصورة متعرفتش تفتح)
+        var imageList = [
+            { src: "project1.jpg", alt: "صورة من أعمالي" }
+        ];
+
+        // عشان تضيف فيديو جديد: انسخ كود الفيديو من رابط يوتيوب
+        // مثال: youtube.com/watch?v=ABC123 -> الكود هو ABC123
+        // وضيفه هنا كسطر جديد في القائمة
+        var videoList = [
+            "_O_g2l9Ndp0",
+            "6qkFlIZ1f6Y",
+            "_ssVN3bS6OI",
+            "I6ExplRs8hg"
+        ];
+
+        // عشان تضيف مقال جديد: ضيف object جديد فيه العنوان والرابط ووصف قصير
+        var articleList = [
+            {
+                title: "مثال: عنوان المقال الأول",
+                url: "https://example.com/article1",
+                summary: "وصف قصير للمقال يظهر تحت العنوان (سطر أو سطرين)."
+            }
+        ];
+
+        // بتبني كل صور imageList وتحطهم جوه galleryContainer
+        function renderGallery() {
+            var container = document.getElementById("galleryContainer");
+            container.innerHTML = "";
+
+            imageList.forEach(function (image) {
+                var img = document.createElement("img");
+                img.src = image.src;
+                img.alt = image.alt;
+                container.appendChild(img);
+            });
+        }
+
+        // بتبني كل فيديوهات videoList وتحطهم جوه videosContainer
+        function renderVideos() {
+            var container = document.getElementById("videosContainer");
+            container.innerHTML = ""; // نفضّي المحتوى القديم الأول (لو موجود)
+
+            videoList.forEach(function (videoId) {
+                var wrapper = document.createElement("div");
+                wrapper.className = "video-wrapper";
+
+                var iframe = document.createElement("iframe");
+                iframe.src = "https://www.youtube.com/embed/" + videoId;
+                iframe.allowFullscreen = true;
+
+                wrapper.appendChild(iframe);
+                container.appendChild(wrapper);
+            });
+        }
+
+        // بتبني كل مقالات articleList وتحطهم جوه articlesContainer
+        function renderArticles() {
+            var container = document.getElementById("articlesContainer");
+            container.innerHTML = "";
+
+            if (articleList.length === 0) {
+                container.innerHTML = "<p>لا توجد مقالات بعد.</p>";
+                return;
+            }
+
+            articleList.forEach(function (article) {
+                var card = document.createElement("div");
+                card.className = "article-card";
+
+                var title = document.createElement("h3");
+                var link = document.createElement("a");
+                link.href = article.url;
+                link.target = "_blank";
+                link.textContent = article.title;
+                title.appendChild(link);
+
+                var summary = document.createElement("p");
+                summary.textContent = article.summary;
+
+                card.appendChild(title);
+                card.appendChild(summary);
+                container.appendChild(card);
+            });
+        }
+
+        // فيديو مشروع BBA: حط كود فيديو يوتيوب هنا (زي ABC123) وسيبه فاضي لو مش جاهز
+        var bbaVideoId = "";
+
+        // بتعرض فيديو مشروع BBA لو فيه كود، ولو فاضي بتخفي المكان
+        function renderBBAVideo() {
+            var container = document.getElementById("bbaVideoContainer");
+            container.innerHTML = "";
+            if (!bbaVideoId) {
+                return;
+            }
+            var wrapper = document.createElement("div");
+            wrapper.className = "video-wrapper";
+            var iframe = document.createElement("iframe");
+            iframe.src = "https://www.youtube.com/embed/" + bbaVideoId;
+            iframe.allowFullscreen = true;
+            wrapper.appendChild(iframe);
+            container.appendChild(wrapper);
+        }
+
+        renderBBAVideo();
+        renderGallery();
+        renderVideos();
+        renderArticles();
+
+
+        /* ====== الدارك مود ====== */
+
+        // بتطبق الوضع (فاتح/داكن) على الصفحة، وتحفظ الاختيار، وتغيّر شكل الزرار
+        function applyTheme(theme) {
+            document.documentElement.setAttribute("data-theme", theme);
+            localStorage.setItem("theme", theme);
+            document.getElementById("themeToggle").textContent = (theme === "dark") ? "☀️" : "🌙";
+        }
+
+        // بتبدّل بين الوضعين لما تدوس الزرار
+        function toggleTheme() {
+            var current = document.documentElement.getAttribute("data-theme");
+            var next = (current === "dark") ? "light" : "dark";
+            applyTheme(next);
+        }
+
+        // أول ما الصفحة تفتح: نطبق آخر اختيار كان محفوظ (أو الوضع الفاتح كافتراضي)
+        var savedTheme = localStorage.getItem("theme") || "light";
+        applyTheme(savedTheme);
+
+
+        /* ====== تأثيرات الظهور عند السكرول ====== */
+
+        // IntersectionObserver بيراقب كل عنصر ليه class="fade-section"
+        // ولما العنصر يظهر جوه الشاشة، بيضيفله class="visible" فيشتغل تأثير الحركة في الـ CSS
+        var sectionObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    sectionObserver.unobserve(entry.target); // نوقف المراقبة بعد ما يظهر مرة واحدة
+                }
+            });
+        }, { threshold: 0.15 }); // يتفعّل لما 15% من العنصر يبقى ظاهر
+
+        var fadeSections = document.querySelectorAll(".fade-section");
+        fadeSections.forEach(function (section) {
+            sectionObserver.observe(section);
+        });
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        // بتحول كود Mermaid لمخطط مرسوم على الصفحة
+        mermaid.initialize({ startOnLoad: false, theme: "default", flowchart: { htmlLabels: true } });
+        mermaid.run({ querySelector: ".mermaid" });
+    </script>
+
+    <script>
+        function openLightbox(src){ document.getElementById('lightboxImg').src = src; document.getElementById('lightbox').classList.add('open'); }
+        function closeLightbox(){ document.getElementById('lightbox').classList.remove('open'); }
+        document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+    </script>
+</body>
+</html>
