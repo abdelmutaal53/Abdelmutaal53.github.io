@@ -1,860 +1,532 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بورتفوليو - مجموعة صابون يوسف</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مجموعة صابون يوسف التجارية | التجارة الدولية والوساطة والسفر والسياحة</title>
+<meta name="description" content="مجموعة صابون يوسف التجارية: التجارة الدولية في الاستيراد والتصدير، أعمال الوساطة التجارية، وحزم السفر والسياحة في زنجبار.">
+<meta property="og:title" content="مجموعة صابون يوسف التجارية">
+<meta property="og:description" content="التجارة الدولية، الوساطة التجارية، والسفر والسياحة في زنجبار.">
+<meta property="og:image" content="zanzibar-family.jpg">
+<meta name="theme-color" content="#0f3d44">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+    --primary:#0f3d44;
+    --primary-2:#12606b;
+    --accent:#c9a24b;
+    --accent-2:#e3c27a;
+    --bg:#f6f8f9;
+    --card:#ffffff;
+    --text:#1d2b30;
+    --muted:#5b6b72;
+    --line:#e2e8eb;
+    --radius:14px;
+    --shadow:0 6px 24px rgba(15,61,68,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:"Cairo","Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.9;font-size:16px}
+img{max-width:100%;display:block}
+a{color:inherit}
+.container{width:92%;max-width:1120px;margin:0 auto}
+section{padding:72px 0}
+.section-head{text-align:center;max-width:680px;margin:0 auto 40px}
+.section-head .kicker{color:var(--accent);font-weight:700;letter-spacing:.5px;font-size:14px}
+.section-head h2{font-size:clamp(26px,4vw,36px);color:var(--primary);font-weight:800;line-height:1.5;margin:4px 0 10px}
+.section-head p{color:var(--muted)}
 
-        /* متغيرات الألوان: الوضع الفاتح (الافتراضي) */
-        :root {
-            --bg: #f0f4f8;
-            --text: #333;
-            --header-bg: #2c3e50;
-            --header-text: #ffffff;
-            --header-sub: #bdc3c7;
-            --navbar-bg: #1c2833;
-            --navbar-text: #ecf0f1;
-            --card-bg: #ffffff;
-            --card-text: #555;
-            --title-color: #2c3e50;
-            --input-bg: #ffffff;
-            --input-border: #cccccc;
-            --footer-text: #888888;
-        }
+/* Navbar */
+.nav{position:sticky;top:0;z-index:100;background:rgba(15,61,68,.97);backdrop-filter:blur(8px);box-shadow:0 2px 14px rgba(0,0,0,.18)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:800;font-size:18px}
+.brand-mark{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:var(--primary);display:grid;place-items:center;font-weight:800;font-size:20px}
+.menu{display:flex;align-items:center;gap:22px;list-style:none}
+.menu a{color:#d8e6e8;text-decoration:none;font-size:15px;font-weight:600;transition:.2s}
+.menu a:hover{color:var(--accent-2)}
+.btn{display:inline-block;padding:12px 26px;border-radius:10px;font-weight:700;text-decoration:none;font-family:inherit;font-size:16px;border:0;cursor:pointer;transition:.2s}
+.btn-gold{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:var(--primary)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(201,162,75,.4)}
+.btn-ghost{border:2px solid rgba(255,255,255,.55);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.btn-green{background:#25a244;color:#fff}
+.btn-green:hover{background:#1f8a39}
+.nav .btn{padding:8px 18px;font-size:14px}
+.burger{display:none;background:none;border:0;color:#fff;font-size:28px;cursor:pointer}
 
-        /* متغيرات الألوان: الوضع الداكن */
-        [data-theme="dark"] {
-            --bg: #121a22;
-            --text: #dcdcdc;
-            --header-bg: #0d1117;
-            --header-text: #f0f0f0;
-            --header-sub: #9aa5b1;
-            --navbar-bg: #0d1117;
-            --navbar-text: #dcdcdc;
-            --card-bg: #1c2833;
-            --card-text: #c5c5c5;
-            --title-color: #eaf6f3;
-            --input-bg: #24303c;
-            --input-border: #3a4a5a;
-            --footer-text: #778;
-        }
+/* Hero */
+.hero{background:radial-gradient(circle at 80% 20%,#17606b 0,transparent 55%),linear-gradient(160deg,#0a2d33,#0f3d44 60%,#12606b);color:#fff;padding:80px 0 90px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero .tag{display:inline-block;background:rgba(201,162,75,.18);color:var(--accent-2);border:1px solid rgba(201,162,75,.4);padding:4px 16px;border-radius:50px;font-size:14px;font-weight:600;margin-bottom:16px}
+.hero h1{font-size:clamp(32px,5.5vw,54px);font-weight:800;line-height:1.35;margin-bottom:16px}
+.hero h1 span{color:var(--accent-2)}
+.hero p{color:#c8dadd;font-size:18px;max-width:560px;margin-bottom:28px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.hero-poster{position:relative}
+.hero-poster img{border-radius:18px;box-shadow:0 20px 50px rgba(0,0,0,.45);border:4px solid rgba(255,255,255,.12);max-width:380px;margin-inline:auto;transform:rotate(-2deg)}
+.hero-badge{position:absolute;bottom:-14px;right:8%;background:var(--accent);color:var(--primary);font-weight:800;padding:8px 18px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.3)}
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        header {
-            background-color: var(--header-bg);
-            color: var(--header-text);
-            text-align: center;
-            padding: 60px 20px;
-            transition: background-color 0.3s ease;
-        }
-        header h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-        header p {
-            font-size: 18px;
-            color: var(--header-sub);
-        }
+/* Trust strip */
+.strip{background:var(--card);box-shadow:var(--shadow);border-radius:var(--radius);margin-top:-44px;position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);padding:22px 10px}
+.strip div{text-align:center;padding:6px 10px;border-left:1px solid var(--line)}
+.strip div:last-child{border-left:0}
+.strip b{display:block;color:var(--primary);font-size:17px}
+.strip small{color:var(--muted);font-size:14px}
 
-        /* قائمة التنقل */
-        .navbar {
-            background-color: var(--navbar-bg);
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 10px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            transition: background-color 0.3s ease;
-        }
-        .navbar a {
-            color: var(--navbar-text);
-            text-decoration: none;
-            font-size: 14px;
-            padding: 8px 14px;
-            border-radius: 6px;
-            transition: background-color 0.2s;
-        }
-        .navbar a:hover {
-            background-color: #16a085;
-        }
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--navbar-text);
-            color: var(--navbar-text);
-            font-size: 15px;
-            padding: 6px 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            line-height: 1;
-        }
+/* About */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+.about-grid p{color:var(--muted);margin-bottom:14px;font-size:17px}
+.values{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.value{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.value .ic{font-size:28px}
+.value h4{color:var(--primary);margin:4px 0 2px}
+.value p{font-size:14px;margin:0}
 
-        section {
-            padding: 40px 20px;
-            max-width: 700px;
-            margin: 0 auto;
-            scroll-margin-top: 70px; /* عشان العنوان ميتغطاش وراء الـ navbar وقت القفز للقسم */
-        }
-        section h2 {
-            color: var(--title-color);
-            border-bottom: 3px solid #16a085;
-            display: inline-block;
-            padding-bottom: 5px;
-            margin-bottom: 20px;
-        }
-        .ad-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        .ad-card {
-            background-color: var(--card-bg);
-            color: var(--card-text);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        .ad-card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            display: block;
-            background: #cfd8dc;
-        }
-        .ad-card .ad-text { padding: 12px 16px; }
-        .ad-card h3 { color: var(--title-color); font-size: 17px; margin-bottom: 6px; }
-        .price-table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: var(--card-bg);
-            color: var(--card-text);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        .price-table th, .price-table td {
-            padding: 12px 14px;
-            text-align: right;
-            border-bottom: 1px solid rgba(128,128,128,0.25);
-        }
-        .price-table th { color: var(--title-color); }
-        .ads-intro { margin-bottom: 18px; }
-        .ad-featured { margin-bottom: 20px; text-align: center; }
-        .ad-featured img {
-            width: 100%;
-            max-width: 520px;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-            cursor: zoom-in;
-        }
-        .ad-card img { cursor: zoom-in; height: auto; }
-        .price-title { color: var(--title-color); margin: 10px 0 12px; }
-        .table-wrap { overflow-x: auto; }
-        .price-table td.price { font-weight: bold; color: var(--title-color); white-space: nowrap; }
-        .price-note { font-size: 14px; opacity: 0.8; margin-top: 10px; }
-        .book-box {
-            margin-top: 24px;
-            padding: 18px;
-            border-radius: 12px;
-            background-color: var(--card-bg);
-            color: var(--card-text);
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        .book-box h3 { color: var(--title-color); margin-bottom: 12px; }
-        .book-buttons { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-        .wa-btn, .call-btn {
-            display: inline-block;
-            padding: 12px 18px;
-            border-radius: 8px;
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 15px;
-        }
-        .wa-btn { background: #25a244; }
-        .call-btn { background: #12606b; }
-        .lightbox {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.9);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-        }
-        .lightbox.open { display: flex; }
-        .lightbox img { max-width: 96%; max-height: 92%; border-radius: 8px; }
-        .lightbox-close { position: absolute; top: 14px; left: 20px; color: #fff; font-size: 40px; cursor: pointer; }
-        .sector {
-            background-color: var(--card-bg);
-            color: var(--card-text);
-            border-radius: 10px;
-            padding: 16px 20px;
-            margin-bottom: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        .sector h3 {
-            color: var(--title-color);
-            margin-bottom: 10px;
-            font-size: 18px;
-        }
-        .sector ul {
-            padding-right: 20px;
-            line-height: 1.9;
-        }
-        .sector li { margin-bottom: 6px; }
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .skill-tag {
-            background-color: #16a085;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-        }
-        .projects {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .project-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            border-right: 4px solid #16a085;
-            transition: background-color 0.3s ease;
-        }
-        .project-card h3 {
-            color: var(--title-color);
-            margin-bottom: 8px;
-            font-size: 18px;
-        }
-        .project-card p {
-            color: var(--card-text);
-            font-size: 15px;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-        .project-tag {
-            display: inline-block;
-            background-color: #eaf6f3;
-            color: #16a085;
-            font-size: 12px;
-            padding: 4px 10px;
-            border-radius: 12px;
-            margin-top: 5px;
-        }
-        .contact-btn {
-            display: inline-block;
-            background-color: #16a085;
-            color: white;
-            text-decoration: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            margin-top: 10px;
-            border: none;
-            font-size: 15px;
-            cursor: pointer;
-        }
-        .social-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 20px;
-        }
-        .social-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 15px;
-        }
-        .fb { background-color: #1877f2; }
-        .ig { background-color: #d62976; }
-        .tw { background-color: #14171a; }
-        .wa { background-color: #25d366; }
+/* Services */
+.services{background:#fff}
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.service{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;transition:.25s;border-top:4px solid var(--accent)}
+.service:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.service .ic{width:56px;height:56px;border-radius:14px;background:var(--primary);display:grid;place-items:center;font-size:28px;margin-bottom:14px}
+.service h3{color:var(--primary);margin-bottom:10px;font-size:20px}
+.service ul{list-style:none}
+.service li{position:relative;padding-right:22px;margin-bottom:8px;color:var(--muted);font-size:15px}
+.service li::before{content:"✓";position:absolute;right:0;color:var(--accent);font-weight:800}
 
-        /* الفيديوهات */
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
+/* Packages */
+.packages{background:linear-gradient(180deg,var(--bg),#e9f1f2)}
+.pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.pkg{background:var(--card);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);border:1px solid var(--line);display:flex;flex-direction:column;position:relative;transition:.25s}
+.pkg:hover{transform:translateY(-5px)}
+.pkg .badge{position:absolute;top:-12px;left:18px;background:var(--accent);color:var(--primary);font-size:13px;font-weight:800;padding:2px 14px;border-radius:50px}
+.pkg.vip{background:linear-gradient(160deg,#0a2d33,#12404a);color:#fff;border-color:#c9a24b}
+.pkg.vip h3,.pkg.vip .price{color:var(--accent-2)}
+.pkg.vip .dur{color:#b9cdd0}
+.pkg h3{color:var(--primary);font-size:20px}
+.pkg .dur{color:var(--muted);font-size:15px;margin-bottom:10px}
+.pkg .price{font-size:36px;font-weight:800;color:var(--primary-2);line-height:1.2}
+.pkg .price small{font-size:14px;font-weight:600;opacity:.75;margin-right:4px}
+.pkg .btn{margin-top:auto;text-align:center;padding:10px;font-size:15px}
+.pkg .price{margin-bottom:16px}
+.posters{margin-top:56px}
+.posters h3{text-align:center;color:var(--primary);font-size:22px;margin-bottom:20px}
+.poster-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.poster-grid img{border-radius:var(--radius);box-shadow:var(--shadow);cursor:zoom-in;transition:.25s;width:100%}
+.poster-grid img:hover{transform:scale(1.02)}
+.pkg-note{text-align:center;color:var(--muted);margin-top:22px;font-size:15px}
 
-        /* المقالات */
-        .articles {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-        .article-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 18px 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            border-right: 4px solid #2980b9;
-            text-align: right;
-            transition: background-color 0.3s ease;
-        }
-        .article-card h3 {
-            margin-bottom: 6px;
-            font-size: 17px;
-        }
-        .article-card h3 a {
-            color: var(--title-color);
-            text-decoration: none;
-        }
-        .article-card h3 a:hover {
-            text-decoration: underline;
-        }
-        .article-card p {
-            color: var(--card-text);
-            font-size: 14px;
-            line-height: 1.6;
-        }
+/* Why */
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.why{text-align:center;padding:24px 16px}
+.why .ic{width:68px;height:68px;border-radius:50%;background:#e4eff0;display:grid;place-items:center;margin:0 auto 12px;font-size:30px}
+.why h4{color:var(--primary);margin-bottom:6px}
+.why p{color:var(--muted);font-size:15px}
 
-        /* مخطط مشروع BBA */
-        .mermaid-wrapper {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            overflow-x: auto;
-            margin-bottom: 25px;
-            transition: background-color 0.3s ease;
-        }
-        .mermaid-wrapper .mermaid {
-            text-align: center;
-        }
-        #bbaVideoContainer:empty {
-            display: none;
-        }
+/* FAQ */
+.faq{background:#fff}
+.faq-list{max-width:780px;margin:0 auto}
+details{background:var(--bg);border:1px solid var(--line);border-radius:12px;margin-bottom:12px;padding:0 20px}
+summary{cursor:pointer;font-weight:700;color:var(--primary);padding:16px 0;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:24px;color:var(--accent);transition:.2s}
+details[open] summary::after{content:"−"}
+details p{padding:0 0 16px;color:var(--muted)}
 
-        /* معرض الصور */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 14px;
-        }
-        .gallery img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
+/* CTA + contact */
+.cta{background:linear-gradient(135deg,#0a2d33,#12606b);color:#fff;text-align:center;padding:64px 0}
+.cta h2{font-size:clamp(24px,4vw,34px);margin-bottom:10px}
+.cta p{color:#c8dadd;margin-bottom:24px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.contact-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;border:1px solid var(--line)}
+.contact-card h3{color:var(--primary);margin-bottom:14px}
+.person{padding:12px 0;border-bottom:1px solid var(--line)}
+.person:last-of-type{border-bottom:0}
+.person b{display:block;color:var(--primary)}
+.person a{color:var(--primary-2);text-decoration:none;font-weight:600;direction:ltr;unicode-bidi:embed}
+form label{display:block;font-weight:600;font-size:14px;margin:10px 0 4px;color:var(--primary)}
+form input,form select,form textarea{width:100%;padding:11px 14px;border:1px solid #cfd9dd;border-radius:10px;font-family:inherit;font-size:15px;background:#fff;color:var(--text)}
+form input:focus,form select:focus,form textarea:focus{outline:2px solid var(--accent);border-color:transparent}
+form .btn{width:100%;margin-top:16px}
 
-        /* فورم التواصل */
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            max-width: 450px;
-            margin-top: 25px;
-        }
-        .contact-form input,
-        .contact-form textarea {
-            padding: 12px;
-            border: 1px solid var(--input-border);
-            border-radius: 8px;
-            font-size: 15px;
-            font-family: inherit;
-            resize: vertical;
-            background-color: var(--input-bg);
-            color: var(--text);
-        }
-        .form-status {
-            font-size: 14px;
-            margin-top: 8px;
-        }
+/* Footer */
+footer{background:#0a2d33;color:#b9cdd0;padding:36px 0 90px;text-align:center;font-size:14px}
+footer .links{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin-bottom:14px}
+footer a{text-decoration:none;color:#d8e6e8}
+footer a:hover{color:var(--accent-2)}
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: var(--footer-text);
-            font-size: 14px;
-        }
+/* floating whatsapp + lightbox */
+.wa-float{position:fixed;bottom:20px;left:20px;z-index:150;width:58px;height:58px;border-radius:50%;background:#25a244;display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.35);text-decoration:none;font-size:30px;animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,162,68,.55)}70%{box-shadow:0 0 0 16px rgba(37,162,68,0)}100%{box-shadow:0 0 0 0 rgba(37,162,68,0)}}
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;align-items:center;justify-content:center}
+.lightbox.open{display:flex}
+.lightbox img{max-width:96%;max-height:92%;border-radius:10px}
+.lightbox span{position:absolute;top:12px;left:20px;color:#fff;font-size:42px;cursor:pointer}
 
-        /* تأثيرات الظهور عند السكرول */
-        .fade-section {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-        .fade-section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
 
-        /* تصميم متجاوب للموبايل */
-        @media (max-width: 600px) {
-            header {
-                padding: 40px 15px;
-            }
-            header h1 {
-                font-size: 24px;
-            }
-            header p {
-                font-size: 14px;
-            }
-            section {
-                padding: 30px 15px;
-            }
-            .navbar a {
-                font-size: 12px;
-                padding: 6px 10px;
-            }
-            .project-card {
-                padding: 15px;
-            }
-            .social-btn,
-            .contact-btn {
-                font-size: 14px;
-                padding: 10px 16px;
-            }
-        }
-    </style>
+.lang{background:transparent;border:1.5px solid rgba(255,255,255,.55);color:#fff;border-radius:8px;padding:5px 12px;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;transition:.2s}
+.lang:hover{background:rgba(255,255,255,.14)}
+.nav-inner .lang{margin-inline-start:10px}
+html[dir=ltr] .service li{padding-right:0;padding-left:22px}
+html[dir=ltr] .service li::before{right:auto;left:0}
+html[dir=ltr] .strip div{border-left:0;border-right:1px solid var(--line)}
+html[dir=ltr] .strip div:last-child{border-right:0}
+html[dir=ltr] .pkg .badge{left:auto;right:18px}
+html[dir=ltr] .hero-badge{right:auto;left:8%}
+html[dir=ltr] .pkg .price small{margin-right:0;margin-left:4px}
+html[dir=ltr] .hero-poster img{transform:rotate(2deg)}
+html[dir=ltr] .lightbox span{left:auto;right:20px}
+html[dir=ltr] .wa-float{left:auto;right:20px}
+html[dir=ltr] .brand{flex-direction:row}
+@media(max-width:860px){html[dir=ltr] .strip div:nth-child(2){border-right:0}}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:.7s}
+.reveal.show{opacity:1;transform:none}
+
+@media(max-width:860px){
+    section{padding:54px 0}
+    .burger{display:block}
+    .menu{display:none;position:absolute;top:68px;right:0;left:0;background:#0f3d44;flex-direction:column;padding:16px 0;gap:14px;box-shadow:0 10px 20px rgba(0,0,0,.25)}
+    .menu.open{display:flex}
+    .nav .btn{display:none}
+    .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr}
+    .hero{padding:50px 0 70px}
+    .hero-poster img{max-width:280px}
+    .strip{grid-template-columns:1fr 1fr;gap:10px}
+    .strip div:nth-child(2){border-left:0}
+    .cards3,.poster-grid{grid-template-columns:1fr}
+    .why-grid{grid-template-columns:1fr 1fr}
+}
+</style>
 </head>
 <body>
 
-    <header>
-        <h1>مجموعة صابون يوسف</h1>
-        <p>مجموعة صابون يوسف التجارية تعنى بالتجارة الدولية في الاستيراد والتصدير وأعمال الوساطة والسفر والسياحة.</p>
-    </header>
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="#home" class="brand"><span class="brand-mark">ص</span> مجموعة صابون يوسف</a>
+    <ul class="menu" id="menu">
+      <li><a href="#home">الرئيسية</a></li>
+      <li><a href="#about">من نحن</a></li>
+      <li><a href="#services">خدماتنا</a></li>
+      <li><a href="#packages">حزم زنجبار</a></li>
+      <li><a href="#faq">الأسئلة الشائعة</a></li>
+      <li><a href="#contact">تواصل معنا</a></li>
+    </ul>
+    <a class="btn btn-gold" href="#contact">احجز الآن</a>
+    <button class="lang" id="langBtn" type="button" aria-label="Language">EN</button>
+    <button class="burger" id="burger" aria-label="القائمة">☰</button>
+  </div>
+</nav>
 
-    <nav class="navbar">
-        <a href="#sectors">القطاعات</a>
-        <a href="#ads">حزم زنجبار</a>
-        <a href="#gallery">معرض الأعمال</a>
-        <a href="#files">ملفات</a>
-        <a href="#videos">فيديوهات</a>
-        <a href="#articles">مقالات</a>
-        <a href="#bba">مشروع BBA</a>
-        <a href="#projects">مشاريعي</a>
-        <a href="#todo">مشروعي البرمجي</a>
-        <a href="#skills">مهاراتي</a>
-        <a href="#about">من أنا</a>
-        <a href="#contact">تواصل معي</a>
-        <a href="yousif.html">مجموعة صابون يوسف</a>
-        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙</button>
-    </nav>
-
-    <section class="fade-section" id="sectors">
-        <h2>قطاعات العمل الرئيسية</h2>
-
-        <div class="sector">
-            <h3>التجارة الدولية (الاستيراد والتصدير)</h3>
-            <ul>
-                <li>إدارة وتنفيذ عمليات التوريد والشحن التجاري للبضائع والسلع المختلفة.</li>
-                <li>التعامل مع المستندات التجارية المعقدة مثل الاعتمادات المستندية (Letters of Credit) وبوالص الشحن لضمان سلاسة حركة السلع عبر الحدود.</li>
-            </ul>
-        </div>
-
-        <div class="sector">
-            <h3>أعمال الوساطة التجارية</h3>
-            <ul>
-                <li>تقديم خدمات الوساطة الموثوقة لتسهيل صفقات البيع والشراء بين الشركات والمصنعين.</li>
-                <li>ربط الأسواق الإقليمية (خصوصاً في شرق أفريقيا والمنطقة العربية) بالفرص التجارية الواعدة.</li>
-            </ul>
-        </div>
-
-        <div class="sector">
-            <h3>قطاع السفر والسياحة</h3>
-            <ul>
-                <li>تنظيم البرامج السياحية وتقديم خدمات الحجوزات المتكاملة (طيران، فنادق، وتذاكر السفر).</li>
-                <li>تصميم حملات ترويجية واستكشافية للوجهات السياحية المميزة، مع التركيز على الأسواق الجذابة مثل شرق أفريقيا (تنزانيا وزنجبار ودبي).</li>
-            </ul>
-        </div>
-    </section>
-
-    <section class="fade-section" id="ads">
-        <h2>حزم زنجبار السياحية</h2>
-        <p class="ads-intro">عروض سياحية متكاملة في زنجبار، جزيرة الأحلام. اضغط على أي صورة لتكبيرها.</p>
-
-        <div class="ad-featured">
-            <img src="zanzibar-family.jpg" alt="حزمة العائلات الاقتصادية - 10 أيام - تبدأ من 750 دولار" loading="lazy" onclick="openLightbox(this.src)">
-        </div>
-
-        <div class="ad-grid">
-            <div class="ad-card">
-                <img src="zanzibar-packages-1.jpg" alt="جميع حزم زنجبار" loading="lazy" onclick="openLightbox(this.src)">
-                <div class="ad-text"><h3>جميع الحزم</h3><p>العائلات والأفراد وشهر العسل بمستوياته المختلفة.</p></div>
-            </div>
-            <div class="ad-card">
-                <img src="zanzibar-packages-2.jpg" alt="باقات زنجبار بتصميم آخر" loading="lazy" onclick="openLightbox(this.src)">
-                <div class="ad-text"><h3>عروض إضافية</h3><p>تفاصيل البرامج والأنشطة لكل حزمة.</p></div>
-            </div>
-        </div>
-
-        <h3 class="price-title">قائمة الأسعار (للفرد)</h3>
-        <div class="table-wrap">
-            <table class="price-table">
-                <thead>
-                    <tr><th>الحزمة</th><th>المدة</th><th>السعر</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>العائلات (اقتصادي)</td><td>10 أيام</td><td class="price">من 750$</td></tr>
-                    <tr><td>الأفراد والأصدقاء (اقتصادي)</td><td>10 أيام</td><td class="price">من 750$</td></tr>
-                    <tr><td>شهر العسل (عادي)</td><td>10 أيام</td><td class="price">1500$</td></tr>
-                    <tr><td>شهر العسل (VIP)</td><td>10 أيام</td><td class="price">2500$</td></tr>
-                    <tr><td>شهر العسل (عادي)</td><td>15 يوم</td><td class="price">2250$</td></tr>
-                    <tr><td>شهر العسل (VIP)</td><td>15 يوم</td><td class="price">3500$</td></tr>
-                    <tr><td>شهر العسل (VVIP)</td><td>20 يوم</td><td class="price">5000$</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <p class="price-note">الأسعار بالدولار الأمريكي للفرد، مع إمكانية التخصيص حسب الطلب.</p>
-
-        <div class="book-box">
-            <h3>احجز الآن</h3>
-            <div class="book-buttons">
-                <a class="wa-btn" href="https://wa.me/255773613116" target="_blank" rel="noopener">واتساب: أ. عبد المتعال صابون</a>
-                <a class="wa-btn" href="https://wa.me/255772413107" target="_blank" rel="noopener">واتساب: د. الظاهر</a>
-                <a class="call-btn" href="tel:+255773613116">اتصال: +255 773 613 116</a>
-            </div>
-        </div>
-    </section>
-
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <span class="lightbox-close">&times;</span>
-        <img id="lightboxImg" src="" alt="">
+<header class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <span class="tag">تجارة دولية • وساطة • سفر وسياحة</span>
+      <h1 data-en-html="Saboun <span>Yousif</span> Trading Group">مجموعة <span>صابون يوسف</span> التجارية</h1>
+      <p>تعنى بالتجارة الدولية في الاستيراد والتصدير، وأعمال الوساطة، والسفر والسياحة، وتربط الأسواق الإقليمية بالفرص الواعدة.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#packages">استعرض حزم زنجبار</a>
+        <a class="btn btn-ghost" href="#contact">تواصل معنا</a>
+      </div>
     </div>
+    <div class="hero-poster">
+      <img src="zanzibar-family.jpg" alt="حزمة العائلات إلى زنجبار" onclick="openLightbox(this.src)">
+      <span class="hero-badge">تبدأ من 750$</span>
+    </div>
+  </div>
+</header>
 
-    <section class="fade-section" id="gallery">
-        <h2>معرض الأعمال</h2>
-        <div class="gallery" id="galleryContainer"></div>
-    </section>
+<div class="container">
+  <div class="strip reveal">
+    <div><b>الصدق والشفافية</b><small>في كل تعاملاتنا</small></div>
+    <div><b>تخصيص حسب الطلب</b><small>برامج تناسبك</small></div>
+    <div><b>دعم ومتابعة</b><small>على مدار الساعة</small></div>
+    <div><b>شرق أفريقيا والعرب</b><small>أسواق نخدمها</small></div>
+  </div>
+</div>
 
-    <section class="fade-section" id="files">
-        <h2>ملفات ومستندات</h2>
-        <a href="%D8%AA%D8%B4%D8%AD%D9%8A%D8%B0%20%D8%A7%D9%84%D8%A3%D8%B0%D9%87%D8%A7%D9%86%20%D8%A8%D8%B3%D9%8A%D8%B1%D8%A9%20%D8%A8%D9%84%D8%A7%D8%AF%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%20%D9%88%20%D8%A7%D9%84%D8%B3%D9%88%D8%AF%D8%A7%D9%86.pdf" target="_blank" class="contact-btn">تصفح الكتاب (PDF)</a>
-    </section>
+<section id="about">
+  <div class="container about-grid">
+    <div class="reveal">
+      <span style="display:block;color:var(--accent);font-weight:700;font-size:14px">من نحن</span>
+      <h2 style="font-size:clamp(26px,4vw,34px);color:var(--primary);font-weight:800;line-height:1.5;margin-bottom:12px">شريككم الموثوق في التجارة والسفر</h2>
+      <p>مجموعة صابون يوسف التجارية تعنى بالتجارة الدولية في الاستيراد والتصدير، وأعمال الوساطة، والسفر والسياحة.</p>
+      <p>نربط الأسواق الإقليمية، خصوصًا في شرق أفريقيا والمنطقة العربية، بالفرص التجارية الواعدة، ونقدم برامج سياحية متكاملة إلى زنجبار وتنزانيا ودبي.</p>
+    </div>
+    <div class="values reveal">
+      <div class="value"><div class="ic">🤝</div><h4>الصدق والشفافية</h4><p>وضوح في الأسعار والتفاصيل.</p></div>
+      <div class="value"><div class="ic">🧩</div><h4>إمكانية التخصيص</h4><p>نعدّل البرنامج حسب طلبك.</p></div>
+      <div class="value"><div class="ic">🛎️</div><h4>دعم مستمر</h4><p>متابعة على مدار الساعة.</p></div>
+      <div class="value"><div class="ic">🏨</div><h4>إقامة مريحة</h4><p>فنادق مناسبة للعائلات.</p></div>
+    </div>
+  </div>
+</section>
 
-    <section class="fade-section" id="videos">
-        <h2>فيديوهات</h2>
-        <div id="videosContainer"></div>
-    </section>
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">خدماتنا</span>
+      <h2>قطاعات العمل الرئيسية</h2>
+      <p>ثلاثة قطاعات متكاملة تخدم التجار والمسافرين.</p>
+    </div>
+    <div class="cards3">
+      <div class="service reveal">
+        <div class="ic">🚢</div>
+        <h3>التجارة الدولية (الاستيراد والتصدير)</h3>
+        <ul>
+          <li>إدارة وتنفيذ عمليات التوريد والشحن التجاري للبضائع والسلع المختلفة.</li>
+          <li>التعامل مع المستندات التجارية المعقدة مثل الاعتمادات المستندية (Letters of Credit) وبوالص الشحن لضمان سلاسة حركة السلع عبر الحدود.</li>
+        </ul>
+      </div>
+      <div class="service reveal">
+        <div class="ic">🤝</div>
+        <h3>أعمال الوساطة التجارية</h3>
+        <ul>
+          <li>تقديم خدمات الوساطة الموثوقة لتسهيل صفقات البيع والشراء بين الشركات والمصنعين.</li>
+          <li>ربط الأسواق الإقليمية (خصوصاً في شرق أفريقيا والمنطقة العربية) بالفرص التجارية الواعدة.</li>
+        </ul>
+      </div>
+      <div class="service reveal">
+        <div class="ic">✈️</div>
+        <h3>قطاع السفر والسياحة</h3>
+        <ul>
+          <li>تنظيم البرامج السياحية وتقديم خدمات الحجوزات المتكاملة (طيران، فنادق، وتذاكر السفر).</li>
+          <li>تصميم حملات ترويجية واستكشافية للوجهات السياحية المميزة، مع التركيز على شرق أفريقيا (تنزانيا وزنجبار ودبي).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section class="fade-section" id="articles">
-        <h2>مقالات</h2>
-        <div class="articles" id="articlesContainer"></div>
-    </section>
+<section class="packages" id="packages">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">زنجبار • جزيرة الأحلام</span>
+      <h2>حزم زنجبار السياحية</h2>
+      <p>اختر الحزمة المناسبة، والأسعار بالدولار الأمريكي للفرد.</p>
+    </div>
+    <div class="pkg-grid">
+      <div class="pkg reveal">
+        <h3>حزمة العائلات (اقتصادي)</h3><div class="dur">10 أيام</div>
+        <div class="price"><small>تبدأ من</small>750$</div>
+        <a class="btn btn-green" target="_blank" rel="noopener" href="https://wa.me/255773613116?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%AD%D8%AC%D8%B2%20%D9%81%D9%8A%20%D8%AD%D8%B2%D9%85%D8%A9%20%D8%A7%D9%84%D8%B9%D8%A7%D8%A6%D9%84%D8%A7%D8%AA%20-%2010%20%D8%A3%D9%8A%D8%A7%D9%85">اطلب الحجز</a>
+      </div>
+      <div class="pkg reveal">
+        <h3>حزمة الأفراد والأصدقاء (اقتصادي)</h3><div class="dur">10 أيام</div>
+        <div class="price"><small>تبدأ من</small>750$</div>
+        <a class="btn btn-green" target="_blank" rel="noopener" href="https://wa.me/255773613116?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%AD%D8%AC%D8%B2%20%D9%81%D9%8A%20%D8%AD%D8%B2%D9%85%D8%A9%20%D8%A7%D9%84%D8%A3%D9%81%D8%B1%D8%A7%D8%AF%20%D9%88%D8%A7%D9%84%D8%A3%D8%B5%D8%AF%D9%82%D8%A7%D8%A1%20-%2010%20%D8%A3%D9%8A%D8%A7%D9%85">اطلب الحجز</a>
+      </div>
+      <div class="pkg reveal">
+        <h3>شهر العسل (عادي)</h3><div class="dur">10 أيام</div>
+        <div class="price">1500$</div>
+        <a class="btn btn-green" target="_blank" rel="noopener" href="https://wa.me/255773613116?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%AD%D8%AC%D8%B2%20%D9%81%D9%8A%20%D8%B4%D9%87%D8%B1%20%D8%A7%D9%84%D8%B9%D8%B3%D9%84%20%28%D8%B9%D8%A7%D8%AF%D9%8A%29%20-%2010%20%D8%A3%D9%8A%D8%A7%D9%85">اطلب الحجز</a>
+      </div>
+      <div class="pkg vip reveal">
+        <span class="badge">VIP</span>
+        <h3>شهر العسل (VIP)</h3><div class="dur">10 أيام</div>
+        <div class="price">2500$</div>
+        <a class="btn btn-gold" target="_blank" rel="noopener" href="https://wa.me/255773613116?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%AD%D8%AC%D8%B2%20%D9%81%D9%8A%20%D8%B4%D9%87%D8%B1%20%D8%A7%D9%84%D8%B9%D8%B3%D9%84%20VIP%20-%2010%20%D8%A3%D9%8A%D8%A7%D9%85">اطلب الحجز</a>
+      </div>
+      <div class="pkg reveal">
+        <h3>شهر العسل (عادي)</h3><div class="dur">15 يوم</div>
+        <div class="price">2250$</div>
+        <a class="btn btn-green" target="_blank" rel="noopener" href="https://wa.me/255773613116?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%AD%D8%AC%D8%B2%20%D9%81%D9%8A%20%D8%B4%D9%87%D8%B1%20%D8%A7%D9%84%D8%B9%D8%B3%D9%84%20%28%D8%B9%D8%A7%D8%AF%D9%8A%29%20-%2015%20%D9%8A%D9%88%D9%85">اطلب الحجز</a>
+      </div>
+      <div class="pkg vip reveal">
+        <span class="badge">VIP</span>
+        <h3>شهر العسل (VIP)</h3><div class="dur">15 يوم</div>
+        <div class="price">3500$</div>
+        <a class="btn btn-gold" target="_blank" rel="noopener" href="https://wa.me/255773613116?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%AD%D8%AC%D8%B2%20%D9%81%D9%8A%20%D8%B4%D9%87%D8%B1%20%D8%A7%D9%84%D8%B9%D8%B3%D9%84%20VIP%20-%2015%20%D9%8A%D9%88%D9%85">اطلب الحجز</a>
+      </div>
+      <div class="pkg vip reveal">
+        <span class="badge">VVIP</span>
+        <h3>شهر العسل (VVIP)</h3><div class="dur">20 يوم</div>
+        <div class="price">5000$</div>
+        <a class="btn btn-gold" target="_blank" rel="noopener" href="https://wa.me/255773613116?text=%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%AD%D8%AC%D8%B2%20%D9%81%D9%8A%20%D8%B4%D9%87%D8%B1%20%D8%A7%D9%84%D8%B9%D8%B3%D9%84%20VVIP%20-%2020%20%D9%8A%D9%88%D9%85">اطلب الحجز</a>
+      </div>
+    </div>
+    <p class="pkg-note">الفرق بين حزم VIP والحزم العادية هو في نوع السكن والترحيل فقط. وتتوفر إمكانية التخصيص حسب الطلب.</p>
 
-    <section class="fade-section" id="bba">
-        <h2>مشروع بنك إفريقيا للسبائك (BBA)</h2>
-        <div id="bbaVideoContainer"></div>
-        <div class="mermaid-wrapper">
-            <div class="mermaid">
-graph TD
-    Root["مشروع بنك إفريقيا للسبائك (BBA) <br> التنزاني - الزنجباري"] --> M1
-    Root --> M2
-    Root --> M3
-    Root --> M4
+    <div class="posters reveal">
+      <h3>تفاصيل البرامج</h3>
+      <div class="poster-grid">
+        <img src="zanzibar-family.jpg" alt="حزمة العائلات" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="zanzibar-packages-1.jpg" alt="جميع حزم زنجبار" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="zanzibar-packages-2.jpg" alt="برامج حزم زنجبار" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+    </div>
+  </div>
+</section>
 
-    subgraph M1 ["1. ابتكار الأدوات المالية الإقليمية"]
-        M1_1["شهادات الادخار المدعومة بالذهب <br> (Gold-Linked Notes)"] --> M1_Goal["حماية المدخرات من التضخم <br> وبناء احتياطي صلب"]
-        M1_2["محفظة التمويل الرقمي لصغار المعدنين <br> (Mobile Gold Wallet)"] --> M1_Goal2["تجفيف منابع التهريب <br> ودمج التعدين الأهلي"]
-    end
+<section id="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">لماذا نحن</span>
+      <h2>لماذا تختار مجموعة صابون يوسف؟</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why reveal"><div class="ic">🛡️</div><h4>الصدق والشفافية</h4><p>أسعار وتفاصيل واضحة دون مفاجآت.</p></div>
+      <div class="why reveal"><div class="ic">⚙️</div><h4>برامج مخصصة</h4><p>نعدّل الحزمة حسب احتياجك.</p></div>
+      <div class="why reveal"><div class="ic">🎧</div><h4>دعم مستمر</h4><p>متابعة على مدار الساعة.</p></div>
+      <div class="why reveal"><div class="ic">🌍</div><h4>خبرة إقليمية</h4><p>شرق أفريقيا والمنطقة العربية.</p></div>
+    </div>
+  </div>
+</section>
 
-    subgraph M2 ["2. هندسة النموذج التجاري (زنجبار - دار السلام)"]
-        M2_1["منطقة زنجبار الحرة للخدمات المالية <br> (Zanzibar Gold Free Zone)"] --> M2_Goal["مستودعات آمنة وحوافز ضريبية <br> لتصبح دبي إفريقيا"]
-        M2_2["ممر التجارة المشتركة (المقايضة)"] --> M2_Goal2["تسوية الذهب مقابل <br> التكنولوجيا والآليات الزراعية"]
-    end
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">أسئلة شائعة</span>
+      <h2>الأسئلة الشائعة</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details><summary>كيف أحجز إحدى الحزم؟</summary><p>اضغط على "اطلب الحجز" في الحزمة المناسبة لتصلك رسالة جاهزة على واتساب، أو تواصل معنا هاتفيًا عبر الأرقام في قسم التواصل.</p></details>
+      <details><summary>هل الأسعار للفرد؟</summary><p>نعم، الأسعار المعروضة بالدولار الأمريكي للفرد الواحد.</p></details>
+      <details><summary>ما الفرق بين الحزم العادية وVIP؟</summary><p>الفرق في نوع السكن والترحيل فقط، أما برنامج الجولات والرحلات فيبقى متقاربًا.</p></details>
+      <details><summary>هل يمكن تخصيص الحزمة؟</summary><p>نعم، نوفر إمكانية التخصيص حسب طلبك، تواصل معنا وأخبرنا بما تريد.</p></details>
+      <details><summary>هل تقدمون خدمات تجارية غير السياحة؟</summary><p>نعم، نعمل في التجارة الدولية (الاستيراد والتصدير) وأعمال الوساطة التجارية بين الشركات والمصنعين.</p></details>
+    </div>
+  </div>
+</section>
 
-    subgraph M3 ["3. استراتيجيات التحفيز والاندماج الاقتصادي"]
-        M3_1["تمويل البنية التحتية مقابل الذهب <br> (Gold-for-Infrastructure PPP)"] --> M3_Goal["تنفيذ الطرق والطاقة <br> بدون ديون سيادية باهظة"]
-        M3_2["صندوق التنمية المجتمعية"] --> M3_Goal2["دعم الصحة والتعليم في <br> مناطق التعدين لكسب الحاضنة الشعبية"]
-    end
+<section class="cta">
+  <div class="container reveal">
+    <h2>احجز الآن وابدأ رحلتك نحو الجنة</h2>
+    <p>زنجبار... حيث الراحة والجمال. راسلنا واحصل على أفضل عرض يناسبك.</p>
+    <a class="btn btn-gold" target="_blank" rel="noopener" href="https://wa.me/255773613116">راسلنا على واتساب</a>
+  </div>
+</section>
 
-    subgraph M4 ["4. الحوكمة الرقمية المتطورة والتتبع"]
-        M4_1["نظام التتبع الرقمي (Blockchain)"] --> M4_Goal["تسجيل رحلة السبيكة <br> من المنجم حتى التصدير"]
-        M4_2["معايير التعدين المسؤول (Responsible Sourcing)"] --> M4_Goal2["ضمان أعلى الأسعار والقبول <br> في البورصات العالمية"]
-    end
-            </div>
-        </div>
-    </section>
-
-    <section class="fade-section" id="projects">
-        <h2>مشاريعي</h2>
-        <div class="projects">
-
-            <div class="project-card">
-                <h3>تجارة الأجهزة الإلكترونية والكهربائية</h3>
-                <p>نشاط تجاري قائم في زنجبار يغطي كافة أقسام الأجهزة الإلكترونية والكهربائية.</p>
-                <span class="project-tag">تجارة</span>
-            </div>
-
-            <div class="project-card">
-                <h3>Zansun - شركة سياحية</h3>
-                <p>شركة سياحية قيد التأسيس في مدينة زنجبار، تهدف إلى تقديم خدمات سياحية متكاملة للزوار.</p>
-                <span class="project-tag">سياحة</span>
-            </div>
-
-            <div class="project-card">
-                <h3>الوساطة التجارية الدولية</h3>
-                <p>تسهيل الأعمال التجارية الدولية، بما في ذلك التعامل في مجال الذهب والأحجار الكريمة.</p>
-                <span class="project-tag">وساطة تجارية</span>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="fade-section" id="todo">
-        <h2>مشروعي البرمجي</h2>
-        <p>جربت أبني تطبيق قائمة مهام تفاعلي بلغة JavaScript.</p>
-        <a href="todo.html" class="contact-btn">جرّب تطبيق قائمة المهام</a>
-    </section>
-
-    <section class="fade-section" id="skills">
-        <h2>مهاراتي</h2>
-        <div class="skills">
-            <span class="skill-tag">إدارة أعمال</span>
-            <span class="skill-tag">تجارة دولية</span>
-            <span class="skill-tag">تصميم مواقع</span>
-            <span class="skill-tag">عمل مجتمعي</span>
-        </div>
-    </section>
-
-    <section class="fade-section" id="about">
-        <h2>من أنا</h2>
-        <p>أعمل في عدة مجالات تجارية بزنجبار، تنزانيا، وأسهم في العمل المجتمعي والسياسي. أشغل حاليًا منصب السكرتير المالي لمنظمة منتدى الشباب، ولدي إسهامات في مجال حقوق الإنسان.</p>
-    </section>
-
-    <section class="fade-section" id="contact">
-        <h2>تواصل معي</h2>
-
-        <p>هل لديك مشروع أو فكرة؟ راسلني!</p>
-
-        <div class="social-links">
-            <a href="https://www.facebook.com/share/1ELtJB6KuC/" class="social-btn fb" target="_blank">فيسبوك</a>
-            <a href="https://www.instagram.com/saboon56" class="social-btn ig" target="_blank">إنستغرام</a>
-            <a href="https://twitter.com/abdelmutaal" class="social-btn tw" target="_blank">تويتر / X</a>
-            <a href="https://wa.me/255679639116" class="social-btn wa" target="_blank">واتساب</a>
-        </div>
-
-        <a href="mailto:abdelmutaal53@gmail.com" class="contact-btn">راسلني عبر الإيميل</a>
-
-        <!-- فورم تواصل فعلي: بيبعت الرسالة مباشرة لإيميلك عن طريق خدمة Formspree -->
-        <form action="https://formspree.io/f/mrenlbll" method="POST" class="contact-form">
-            <input type="text" name="name" placeholder="الاسم" required>
-            <input type="email" name="email" placeholder="البريد الإلكتروني" required>
-            <textarea name="message" rows="5" placeholder="رسالتك" required></textarea>
-            <button type="submit" class="contact-btn">إرسال الرسالة</button>
+<section id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">تواصل معنا</span>
+      <h2>يسعدنا خدمتكم</h2>
+      <p>يسعدنا تلبية احتياجاتكم التجارية والسياحية.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <h3>للتواصل والاستفسار</h3>
+        <div class="person"><b>أ. عبد المتعال صابون</b><a href="tel:+255773613116">+255 773 613 116</a></div>
+        <div class="person"><b>د. الظاهر</b><a href="tel:+255772413107">+255 772 413 107</a> &nbsp; <a href="tel:+255783256057">+255 783 256 057</a></div>
+        <div class="person"><b>البريد الإلكتروني</b><a href="mailto:info@sabounyousif.com">info@sabounyousif.com</a></div>
+      </div>
+      <div class="contact-card reveal">
+        <h3>أرسل طلبك عبر واتساب</h3>
+        <form id="orderForm">
+          <label for="fname">الاسم</label>
+          <input id="fname" required placeholder="اسمك الكريم">
+          <label for="fservice">الخدمة المطلوبة</label>
+          <select id="fservice">
+            <option>حزمة سياحية في زنجبار</option>
+            <option>التجارة الدولية (استيراد / تصدير)</option>
+            <option>الوساطة التجارية</option>
+            <option>استفسار آخر</option>
+          </select>
+          <label for="fmsg">رسالتك</label>
+          <textarea id="fmsg" rows="3" placeholder="اكتب تفاصيل طلبك"></textarea>
+          <button class="btn btn-green" type="submit">إرسال عبر واتساب</button>
         </form>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <footer>
-        © 2026 مجموعة صابون يوسف التجارية
-    </footer>
+<footer>
+  <div class="container">
+    <div class="links">
+      <a href="#about">من نحن</a><a href="#services">خدماتنا</a><a href="#packages">حزم زنجبار</a><a href="#faq">الأسئلة الشائعة</a><a href="#contact">تواصل معنا</a><a href="portfolio.html">الموقع الشخصي</a>
+    </div>
+    © 2026 مجموعة صابون يوسف التجارية. جميع الحقوق محفوظة.
+  </div>
+</footer>
 
-    <script>
+<a class="wa-float" target="_blank" rel="noopener" href="https://wa.me/255773613116" aria-label="واتساب">💬</a>
 
-        /* ====== الفيديوهات والمقالات: تضاف بسطر واحد بس ====== */
+<div class="lightbox" id="lightbox" onclick="closeLightbox()"><span>&times;</span><img id="lightboxImg" src="" alt=""></div>
 
-        /* ====== الفيديوهات والمقالات والصور: تضاف بسطر واحد بس ====== */
+<script>
+function openLightbox(src){document.getElementById('lightboxImg').src=src;document.getElementById('lightbox').classList.add('open')}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open')}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox()});
 
-        // عشان تضيف صورة جديدة: ارفع ملف الصورة على GitHub بجنب index.html
-        // وضيف اسم الملف هنا (والوصف اللي هيظهر لو الصورة متعرفتش تفتح)
-        var imageList = [
-            { src: "project1.jpg", alt: "صورة من أعمالي" }
-        ];
+var burger=document.getElementById('burger'),menu=document.getElementById('menu');
+burger.addEventListener('click',function(){menu.classList.toggle('open')});
+menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open')})});
 
-        // عشان تضيف فيديو جديد: انسخ كود الفيديو من رابط يوتيوب
-        // مثال: youtube.com/watch?v=ABC123 -> الكود هو ABC123
-        // وضيفه هنا كسطر جديد في القائمة
-        var videoList = [
-            "_O_g2l9Ndp0",
-            "6qkFlIZ1f6Y",
-            "_ssVN3bS6OI",
-            "I6ExplRs8hg"
-        ];
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
 
-        // عشان تضيف مقال جديد: ضيف object جديد فيه العنوان والرابط ووصف قصير
-        var articleList = [
-            {
-                title: "مثال: عنوان المقال الأول",
-                url: "https://example.com/article1",
-                summary: "وصف قصير للمقال يظهر تحت العنوان (سطر أو سطرين)."
-            }
-        ];
+var T={"ص": "S", "مجموعة صابون يوسف": "Saboun Yousif Group", "الرئيسية": "Home", "من نحن": "About Us", "خدماتنا": "Our Services", "حزم زنجبار": "Zanzibar Packages", "الأسئلة الشائعة": "FAQ", "تواصل معنا": "Contact Us", "احجز الآن": "Book Now", "القائمة": "Menu", "تجارة دولية • وساطة • سفر وسياحة": "International Trade • Brokerage • Travel & Tourism", "تعنى بالتجارة الدولية في الاستيراد والتصدير، وأعمال الوساطة، والسفر والسياحة، وتربط الأسواق الإقليمية بالفرص الواعدة.": "Specialized in international import and export trade, brokerage services, and travel and tourism, connecting regional markets with promising opportunities.", "استعرض حزم زنجبار": "Explore Zanzibar Packages", "حزمة العائلات إلى زنجبار": "Family package to Zanzibar", "تبدأ من 750$": "From $750", "الصدق والشفافية": "Honesty & Transparency", "في كل تعاملاتنا": "In all our dealings", "تخصيص حسب الطلب": "Customized On Request", "برامج تناسبك": "Programs that suit you", "دعم ومتابعة": "Support & Follow-up", "على مدار الساعة": "Around the clock", "شرق أفريقيا والعرب": "East Africa & the Arab World", "أسواق نخدمها": "Markets we serve", "شريككم الموثوق في التجارة والسفر": "Your Trusted Partner in Trade and Travel", "مجموعة صابون يوسف التجارية تعنى بالتجارة الدولية في الاستيراد والتصدير، وأعمال الوساطة، والسفر والسياحة.": "Saboun Yousif Trading Group specializes in international import and export trade, brokerage services, and travel and tourism.", "نربط الأسواق الإقليمية، خصوصًا في شرق أفريقيا والمنطقة العربية، بالفرص التجارية الواعدة، ونقدم برامج سياحية متكاملة إلى زنجبار وتنزانيا ودبي.": "We connect regional markets, especially in East Africa and the Arab region, with promising business opportunities, and we offer complete tourism programs to Zanzibar, Tanzania and Dubai.", "وضوح في الأسعار والتفاصيل.": "Clear prices and details.", "إمكانية التخصيص": "Customization", "نعدّل البرنامج حسب طلبك.": "We tailor the program to your request.", "دعم مستمر": "Ongoing Support", "متابعة على مدار الساعة.": "Follow-up around the clock.", "إقامة مريحة": "Comfortable Stay", "فنادق مناسبة للعائلات.": "Family-friendly hotels.", "قطاعات العمل الرئيسية": "Our Main Business Sectors", "ثلاثة قطاعات متكاملة تخدم التجار والمسافرين.": "Three integrated sectors serving traders and travelers.", "التجارة الدولية (الاستيراد والتصدير)": "International Trade (Import & Export)", "إدارة وتنفيذ عمليات التوريد والشحن التجاري للبضائع والسلع المختلفة.": "Managing and executing supply and commercial shipping operations for various goods and commodities.", "التعامل مع المستندات التجارية المعقدة مثل الاعتمادات المستندية (Letters of Credit) وبوالص الشحن لضمان سلاسة حركة السلع عبر الحدود.": "Handling complex trade documents such as Letters of Credit and bills of lading to ensure the smooth movement of goods across borders.", "أعمال الوساطة التجارية": "Commercial Brokerage", "تقديم خدمات الوساطة الموثوقة لتسهيل صفقات البيع والشراء بين الشركات والمصنعين.": "Providing trusted brokerage services to facilitate buying and selling deals between companies and manufacturers.", "ربط الأسواق الإقليمية (خصوصاً في شرق أفريقيا والمنطقة العربية) بالفرص التجارية الواعدة.": "Connecting regional markets (especially in East Africa and the Arab region) with promising business opportunities.", "قطاع السفر والسياحة": "Travel & Tourism", "تنظيم البرامج السياحية وتقديم خدمات الحجوزات المتكاملة (طيران، فنادق، وتذاكر السفر).": "Organizing tourism programs and offering integrated booking services (flights, hotels, and travel tickets).", "تصميم حملات ترويجية واستكشافية للوجهات السياحية المميزة، مع التركيز على شرق أفريقيا (تنزانيا وزنجبار ودبي).": "Designing promotional and exploratory campaigns for distinctive tourist destinations, focusing on East Africa (Tanzania, Zanzibar and Dubai).", "زنجبار • جزيرة الأحلام": "Zanzibar • Island of Dreams", "حزم زنجبار السياحية": "Zanzibar Tour Packages", "اختر الحزمة المناسبة، والأسعار بالدولار الأمريكي للفرد.": "Choose the package that suits you. Prices are in US dollars per person.", "حزمة العائلات (اقتصادي)": "Family Package (Economy)", "10 أيام": "10 days", "15 يوم": "15 days", "20 يوم": "20 days", "تبدأ من": "From", "750$": "$750", "1500$": "$1,500", "2500$": "$2,500", "2250$": "$2,250", "3500$": "$3,500", "5000$": "$5,000", "اطلب الحجز": "Request Booking", "حزمة الأفراد والأصدقاء (اقتصادي)": "Individuals & Friends Package (Economy)", "شهر العسل (عادي)": "Honeymoon (Standard)", "شهر العسل (VIP)": "Honeymoon (VIP)", "شهر العسل (VVIP)": "Honeymoon (VVIP)", "الفرق بين حزم VIP والحزم العادية هو في نوع السكن والترحيل فقط. وتتوفر إمكانية التخصيص حسب الطلب.": "The only difference between VIP and standard packages is the type of accommodation and transport. Customization is available on request.", "تفاصيل البرامج": "Program Details", "حزمة العائلات": "Family package", "جميع حزم زنجبار": "All Zanzibar packages", "برامج حزم زنجبار": "Zanzibar package programs", "لماذا نحن": "Why Us", "لماذا تختار مجموعة صابون يوسف؟": "Why Choose Saboun Yousif Group?", "أسعار وتفاصيل واضحة دون مفاجآت.": "Clear prices and details, no surprises.", "برامج مخصصة": "Tailored Programs", "نعدّل الحزمة حسب احتياجك.": "We adjust the package to your needs.", "خبرة إقليمية": "Regional Expertise", "شرق أفريقيا والمنطقة العربية.": "East Africa and the Arab region.", "أسئلة شائعة": "FAQ", "كيف أحجز إحدى الحزم؟": "How do I book a package?", "اضغط على \"اطلب الحجز\" في الحزمة المناسبة لتصلك رسالة جاهزة على واتساب، أو تواصل معنا هاتفيًا عبر الأرقام في قسم التواصل.": "Click \"Request Booking\" on the package you like to get a ready-made WhatsApp message, or call us on the numbers in the contact section.", "هل الأسعار للفرد؟": "Are prices per person?", "نعم، الأسعار المعروضة بالدولار الأمريكي للفرد الواحد.": "Yes, the prices shown are in US dollars per person.", "ما الفرق بين الحزم العادية وVIP؟": "What is the difference between standard and VIP packages?", "الفرق في نوع السكن والترحيل فقط، أما برنامج الجولات والرحلات فيبقى متقاربًا.": "The difference is only in the type of accommodation and transport. The tours and trips program stays similar.", "هل يمكن تخصيص الحزمة؟": "Can the package be customized?", "نعم، نوفر إمكانية التخصيص حسب طلبك، تواصل معنا وأخبرنا بما تريد.": "Yes, we offer customization on request. Contact us and tell us what you want.", "هل تقدمون خدمات تجارية غير السياحة؟": "Do you offer business services besides tourism?", "نعم، نعمل في التجارة الدولية (الاستيراد والتصدير) وأعمال الوساطة التجارية بين الشركات والمصنعين.": "Yes, we work in international trade (import and export) and commercial brokerage between companies and manufacturers.", "احجز الآن وابدأ رحلتك نحو الجنة": "Book now and start your journey to paradise", "زنجبار... حيث الراحة والجمال. راسلنا واحصل على أفضل عرض يناسبك.": "Zanzibar... where comfort meets beauty. Message us and get the best offer for you.", "راسلنا على واتساب": "Message us on WhatsApp", "يسعدنا خدمتكم": "We're Happy to Serve You", "يسعدنا تلبية احتياجاتكم التجارية والسياحية.": "We are glad to meet your business and tourism needs.", "للتواصل والاستفسار": "Contact & Inquiries", "أ. عبد المتعال صابون": "Mr. Abdelmutaal Saboun", "د. الظاهر": "Dr. Al-Dhaher", "البريد الإلكتروني": "Email", "أرسل طلبك عبر واتساب": "Send Your Request via WhatsApp", "الاسم": "Name", "اسمك الكريم": "Your name", "الخدمة المطلوبة": "Service needed", "حزمة سياحية في زنجبار": "Tour package in Zanzibar", "التجارة الدولية (استيراد / تصدير)": "International trade (import / export)", "الوساطة التجارية": "Commercial brokerage", "استفسار آخر": "Other inquiry", "رسالتك": "Your message", "اكتب تفاصيل طلبك": "Write your request details", "إرسال عبر واتساب": "Send via WhatsApp", "الموقع الشخصي": "Personal Site", "© 2026 مجموعة صابون يوسف التجارية. جميع الحقوق محفوظة.": "© 2026 Saboun Yousif Trading Group. All rights reserved.", "واتساب": "WhatsApp"};
+var lang='ar';
+var AR_META={};
+function walkText(l){
+  var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null),n,nodes=[];
+  while(n=w.nextNode()){ if(n.parentNode.tagName!=='SCRIPT') nodes.push(n); }
+  nodes.forEach(function(n){
+    if(l==='en'){
+      var o=(n.__o!==undefined)?n.__o:n.nodeValue, k=o.trim();
+      if(T[k]!==undefined){ n.__o=o; n.nodeValue=o.replace(k,T[k]); }
+    } else if(n.__o!==undefined){ n.nodeValue=n.__o; }
+  });
+  ['alt','placeholder','aria-label'].forEach(function(a){
+    document.querySelectorAll('['+a+']').forEach(function(el){
+      var key='__o_'+a;
+      if(l==='en'){ var o=(el[key]!==undefined)?el[key]:el.getAttribute(a); if(T[o]!==undefined){ el[key]=o; el.setAttribute(a,T[o]); } }
+      else if(el[key]!==undefined){ el.setAttribute(a,el[key]); }
+    });
+  });
+  document.querySelectorAll('[data-en-html]').forEach(function(el){
+    if(l==='en'){ if(el.__oh===undefined) el.__oh=el.innerHTML; el.innerHTML=el.getAttribute('data-en-html'); }
+    else if(el.__oh!==undefined){ el.innerHTML=el.__oh; }
+  });
+}
+function updateLinks(l){
+  document.querySelectorAll('.pkg a.btn').forEach(function(a){
+    if(a.__href===undefined) a.__href=a.getAttribute('href');
+    if(l==='en'){
+      var c=a.closest('.pkg');
+      var name=c.querySelector('h3').textContent.trim(), dur=c.querySelector('.dur').textContent.trim();
+      a.href='https://wa.me/255773613116?text='+encodeURIComponent('Hello, I would like to book: '+name+' ('+dur+')');
+    } else { a.setAttribute('href',a.__href); }
+  });
+}
+function updateMeta(l){
+  var t=document.querySelector('title'), d=document.querySelector('meta[name=description]'), og=document.querySelector('meta[property="og:title"]'), ogd=document.querySelector('meta[property="og:description"]');
+  if(!AR_META.t){AR_META={t:t.textContent,d:d.content,og:og.content,ogd:ogd.content};}
+  if(l==='en'){
+    t.textContent='Saboun Yousif Trading Group | International Trade, Brokerage, Travel & Tourism';
+    d.content='Saboun Yousif Trading Group: international import and export trade, commercial brokerage, and travel and tourism packages in Zanzibar.';
+    og.content='Saboun Yousif Trading Group';
+    ogd.content='International trade, brokerage, and travel and tourism in Zanzibar.';
+  } else { t.textContent=AR_META.t; d.content=AR_META.d; og.content=AR_META.og; ogd.content=AR_META.ogd; }
+}
+function setLang(l){
+  lang=l;
+  document.documentElement.lang=l;
+  document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+  walkText(l); updateLinks(l); updateMeta(l);
+  document.getElementById('langBtn').textContent=(l==='ar')?'EN':'عربي';
+  try{localStorage.setItem('site_lang',l)}catch(e){}
+}
+document.getElementById('langBtn').addEventListener('click',function(){setLang(lang==='ar'?'en':'ar')});
 
-        // بتبني كل صور imageList وتحطهم جوه galleryContainer
-        function renderGallery() {
-            var container = document.getElementById("galleryContainer");
-            container.innerHTML = "";
+document.getElementById('orderForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var name=document.getElementById('fname').value, svc=document.getElementById('fservice').value, msg=document.getElementById('fmsg').value, t;
+  if(lang==='en'){ t='Hello, I am '+name+'\nService: '+svc+'\n'+msg; }
+  else { t='السلام عليكم، أنا '+name+'\nالخدمة: '+svc+'\n'+msg; }
+  window.open('https://wa.me/255773613116?text='+encodeURIComponent(t),'_blank');
+});
 
-            imageList.forEach(function (image) {
-                var img = document.createElement("img");
-                img.src = image.src;
-                img.alt = image.alt;
-                container.appendChild(img);
-            });
-        }
-
-        // بتبني كل فيديوهات videoList وتحطهم جوه videosContainer
-        function renderVideos() {
-            var container = document.getElementById("videosContainer");
-            container.innerHTML = ""; // نفضّي المحتوى القديم الأول (لو موجود)
-
-            videoList.forEach(function (videoId) {
-                var wrapper = document.createElement("div");
-                wrapper.className = "video-wrapper";
-
-                var iframe = document.createElement("iframe");
-                iframe.src = "https://www.youtube.com/embed/" + videoId;
-                iframe.allowFullscreen = true;
-
-                wrapper.appendChild(iframe);
-                container.appendChild(wrapper);
-            });
-        }
-
-        // بتبني كل مقالات articleList وتحطهم جوه articlesContainer
-        function renderArticles() {
-            var container = document.getElementById("articlesContainer");
-            container.innerHTML = "";
-
-            if (articleList.length === 0) {
-                container.innerHTML = "<p>لا توجد مقالات بعد.</p>";
-                return;
-            }
-
-            articleList.forEach(function (article) {
-                var card = document.createElement("div");
-                card.className = "article-card";
-
-                var title = document.createElement("h3");
-                var link = document.createElement("a");
-                link.href = article.url;
-                link.target = "_blank";
-                link.textContent = article.title;
-                title.appendChild(link);
-
-                var summary = document.createElement("p");
-                summary.textContent = article.summary;
-
-                card.appendChild(title);
-                card.appendChild(summary);
-                container.appendChild(card);
-            });
-        }
-
-        // فيديو مشروع BBA: حط كود فيديو يوتيوب هنا (زي ABC123) وسيبه فاضي لو مش جاهز
-        var bbaVideoId = "";
-
-        // بتعرض فيديو مشروع BBA لو فيه كود، ولو فاضي بتخفي المكان
-        function renderBBAVideo() {
-            var container = document.getElementById("bbaVideoContainer");
-            container.innerHTML = "";
-            if (!bbaVideoId) {
-                return;
-            }
-            var wrapper = document.createElement("div");
-            wrapper.className = "video-wrapper";
-            var iframe = document.createElement("iframe");
-            iframe.src = "https://www.youtube.com/embed/" + bbaVideoId;
-            iframe.allowFullscreen = true;
-            wrapper.appendChild(iframe);
-            container.appendChild(wrapper);
-        }
-
-        renderBBAVideo();
-        renderGallery();
-        renderVideos();
-        renderArticles();
-
-
-        /* ====== الدارك مود ====== */
-
-        // بتطبق الوضع (فاتح/داكن) على الصفحة، وتحفظ الاختيار، وتغيّر شكل الزرار
-        function applyTheme(theme) {
-            document.documentElement.setAttribute("data-theme", theme);
-            localStorage.setItem("theme", theme);
-            document.getElementById("themeToggle").textContent = (theme === "dark") ? "☀️" : "🌙";
-        }
-
-        // بتبدّل بين الوضعين لما تدوس الزرار
-        function toggleTheme() {
-            var current = document.documentElement.getAttribute("data-theme");
-            var next = (current === "dark") ? "light" : "dark";
-            applyTheme(next);
-        }
-
-        // أول ما الصفحة تفتح: نطبق آخر اختيار كان محفوظ (أو الوضع الفاتح كافتراضي)
-        var savedTheme = localStorage.getItem("theme") || "light";
-        applyTheme(savedTheme);
-
-
-        /* ====== تأثيرات الظهور عند السكرول ====== */
-
-        // IntersectionObserver بيراقب كل عنصر ليه class="fade-section"
-        // ولما العنصر يظهر جوه الشاشة، بيضيفله class="visible" فيشتغل تأثير الحركة في الـ CSS
-        var sectionObserver = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                    sectionObserver.unobserve(entry.target); // نوقف المراقبة بعد ما يظهر مرة واحدة
-                }
-            });
-        }, { threshold: 0.15 }); // يتفعّل لما 15% من العنصر يبقى ظاهر
-
-        var fadeSections = document.querySelectorAll(".fade-section");
-        fadeSections.forEach(function (section) {
-            sectionObserver.observe(section);
-        });
-
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-    <script>
-        // بتحول كود Mermaid لمخطط مرسوم على الصفحة
-        mermaid.initialize({ startOnLoad: false, theme: "default", flowchart: { htmlLabels: true } });
-        mermaid.run({ querySelector: ".mermaid" });
-    </script>
-
-    <script>
-        function openLightbox(src){ document.getElementById('lightboxImg').src = src; document.getElementById('lightbox').classList.add('open'); }
-        function closeLightbox(){ document.getElementById('lightbox').classList.remove('open'); }
-        document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
-    </script>
+(function(){
+  var q=new URLSearchParams(location.search).get('lang'), saved=null;
+  try{saved=localStorage.getItem('site_lang')}catch(e){}
+  var l=q||saved;
+  if(l==='en') setLang('en');
+})();
+</script>
 </body>
 </html>
